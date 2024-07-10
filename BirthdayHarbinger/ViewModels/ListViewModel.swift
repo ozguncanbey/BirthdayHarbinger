@@ -15,7 +15,7 @@ final class ListViewModel: ObservableObject {
     init() { getPeople() }
     
     func getPeople() {
-        
+        people.append(Person(name: "Özgün", birthday: "02/10/2002", category: "Family"))
     }
     
 //    func savePerson(person: Person) {

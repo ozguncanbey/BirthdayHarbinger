@@ -14,35 +14,58 @@ struct ListScreen: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
+            VStack {
                 Picker("", selection: $category) {
-                    ForEach(Category.allCases, id: \.self) {
-                        Text($0.rawValue)
-                            .tag($0)
+                    ForEach(Category.allCases, id: \.self) { category in
+                        Text(category.rawValue)
+                            .tag(category)
                     }
                 }
                 .pickerStyle(.segmented)
                 .padding(.horizontal)
                 .padding(.bottom)
                 .onChange(of: category) {
-                    viewModel.filterPeople(by: category)
+                    withAnimation {
+                        viewModel.filterPeople(by: category)
+                    }
                 }
                 
-                if viewModel.peopleSortedByDaysLeft().isEmpty {
-                    
-                    ContentUnavailableView("There is nobody", systemImage: "person.slash.fill", description: Text("Add someone to see"))
-                    
-                } else {
-                    LazyVStack {
-                        ForEach(viewModel.peopleSortedByDaysLeft()) { person in
-                            ListCell(person: person)
-                            Divider()
-                                .padding(.horizontal)
+                TabView(selection: $category) {
+                    ForEach(Category.allCases, id: \.self) { category in
+                        if viewModel.peopleSortedByDaysLeft().filter({ $0.category! == category.rawValue || category == .All }).isEmpty {
+                            ContentUnavailableView("There is nobody", systemImage: "person.slash.fill", description: Text("Add someone to see"))
+                                .tag(category)
+                        } else {
+                            ScrollView {
+                                LazyVStack {
+                                    ForEach(viewModel.peopleSortedByDaysLeft().filter { $0.category! == category.rawValue || category == .All }) { person in
+                                        ListCell(person: person)
+                                        Divider()
+                                            .padding(.horizontal)
+                                    }
+                                }
+                            }
+                            .tag(category)
                         }
                     }
                 }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                
+                Button(action: {
+                    navigateToAddNewPersonScreen = true
+                }, label: {
+                    Text("Add person")
+                        .font(.headline)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 30)
+                        .background(Color(UIColor.black))
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
+                })
+                .padding(.horizontal)
+                .padding(.bottom, 10)
             }
-            .navigationTitle("Happy Birthday")
+            .navigationTitle("Birthdays")
             .padding(.top)
             .sheet(isPresented: $navigateToAddNewPersonScreen) {
                 AddNewPersonScreen()
@@ -50,20 +73,6 @@ struct ListScreen: View {
                         viewModel.getPeople()
                     }
             }
-            
-            Button(action: {
-                navigateToAddNewPersonScreen = true
-            }, label: {
-                Text("Add person")
-                    .font(.headline)
-                    .padding(.vertical, 5)
-                    .padding(.horizontal, 30)
-                    .background(Color(UIColor.black))
-                    .foregroundColor(.white)
-                    .cornerRadius(20)
-            })
-            .padding(.horizontal)
-            .padding(.bottom, 10)
         }
         .onAppear {
             viewModel.filterPeople(by: category)
