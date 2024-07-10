@@ -8,17 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */; };
-		778EE3E62C3E9B7D00FE70DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE3E52C3E9B7D00FE70DD /* ContentView.swift */; };
 		778EE3E82C3E9B7E00FE70DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */; };
 		778EE3EB2C3E9B7E00FE70DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3EA2C3E9B7E00FE70DD /* Preview Assets.xcassets */; };
+		778EE3FB2C3E9C4200FE70DD /* DateFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE3FA2C3E9C4200FE70DD /* DateFormatter+Ext.swift */; };
+		778EE3FD2C3E9C5F00FE70DD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE3FC2C3E9C5F00FE70DD /* Person.swift */; };
+		778EE3FF2C3E9C6600FE70DD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE3FE2C3E9C6600FE70DD /* Category.swift */; };
+		778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4002C3E9CA600FE70DD /* ListCell.swift */; };
+		778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */; };
+		778EE4052C3E9CB500FE70DD /* ListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4032C3E9CB500FE70DD /* ListScreen.swift */; };
+		778EE4072C3E9CCA00FE70DD /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4062C3E9CCA00FE70DD /* ListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		778EE3E02C3E9B7D00FE70DD /* BirthdayHarbinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirthdayHarbinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayHarbingerApp.swift; sourceTree = "<group>"; };
-		778EE3E52C3E9B7D00FE70DD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		778EE3EA2C3E9B7E00FE70DD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		778EE3FA2C3E9C4200FE70DD /* DateFormatter+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Ext.swift"; sourceTree = "<group>"; };
+		778EE3FC2C3E9C5F00FE70DD /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		778EE3FE2C3E9C6600FE70DD /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		778EE4002C3E9CA600FE70DD /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewPersonScreen.swift; sourceTree = "<group>"; };
+		778EE4032C3E9CB500FE70DD /* ListScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListScreen.swift; sourceTree = "<group>"; };
+		778EE4062C3E9CCA00FE70DD /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +63,13 @@
 		778EE3E22C3E9B7D00FE70DD /* BirthdayHarbinger */ = {
 			isa = PBXGroup;
 			children = (
-				778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */,
-				778EE3E52C3E9B7D00FE70DD /* ContentView.swift */,
+				778EE3F12C3E9BE100FE70DD /* App */,
+				778EE3F72C3E9C0D00FE70DD /* Extension */,
+				778EE3F62C3E9C0500FE70DD /* Utilities */,
+				778EE3F52C3E9BFA00FE70DD /* Managers */,
+				778EE3F42C3E9BF200FE70DD /* Models */,
+				778EE3F32C3E9BEC00FE70DD /* ViewModels */,
+				778EE3F22C3E9BE700FE70DD /* Views */,
 				778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */,
 				778EE3E92C3E9B7E00FE70DD /* Preview Content */,
 			);
@@ -65,6 +82,79 @@
 				778EE3EA2C3E9B7E00FE70DD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		778EE3F12C3E9BE100FE70DD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		778EE3F22C3E9BE700FE70DD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				778EE3F82C3E9C1500FE70DD /* Screens */,
+				778EE3F92C3E9C1B00FE70DD /* CustomViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		778EE3F32C3E9BEC00FE70DD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				778EE4062C3E9CCA00FE70DD /* ListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		778EE3F42C3E9BF200FE70DD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				778EE3FC2C3E9C5F00FE70DD /* Person.swift */,
+				778EE3FE2C3E9C6600FE70DD /* Category.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		778EE3F52C3E9BFA00FE70DD /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		778EE3F62C3E9C0500FE70DD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		778EE3F72C3E9C0D00FE70DD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				778EE3FA2C3E9C4200FE70DD /* DateFormatter+Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		778EE3F82C3E9C1500FE70DD /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				778EE4032C3E9CB500FE70DD /* ListScreen.swift */,
+				778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		778EE3F92C3E9C1B00FE70DD /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				778EE4002C3E9CA600FE70DD /* ListCell.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +227,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778EE3E62C3E9B7D00FE70DD /* ContentView.swift in Sources */,
+				778EE3FD2C3E9C5F00FE70DD /* Person.swift in Sources */,
+				778EE4052C3E9CB500FE70DD /* ListScreen.swift in Sources */,
+				778EE3FB2C3E9C4200FE70DD /* DateFormatter+Ext.swift in Sources */,
 				778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */,
+				778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */,
+				778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */,
+				778EE4072C3E9CCA00FE70DD /* ListViewModel.swift in Sources */,
+				778EE3FF2C3E9C6600FE70DD /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

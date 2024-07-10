@@ -11,7 +11,7 @@ import SwiftUI
 struct BirthdayHarbingerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ListScreen()
         }
     }
 }
