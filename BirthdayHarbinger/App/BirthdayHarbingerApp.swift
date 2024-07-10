@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct BirthdayHarbingerApp: App {
@@ -13,5 +14,6 @@ struct BirthdayHarbingerApp: App {
         WindowGroup {
             ListScreen()
         }
+        .modelContainer(for: Person.self)
     }
 }

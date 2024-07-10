@@ -16,7 +16,6 @@
 		778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4002C3E9CA600FE70DD /* ListCell.swift */; };
 		778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */; };
 		778EE4052C3E9CB500FE70DD /* ListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4032C3E9CB500FE70DD /* ListScreen.swift */; };
-		778EE4072C3E9CCA00FE70DD /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4062C3E9CCA00FE70DD /* ListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +29,6 @@
 		778EE4002C3E9CA600FE70DD /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewPersonScreen.swift; sourceTree = "<group>"; };
 		778EE4032C3E9CB500FE70DD /* ListScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListScreen.swift; sourceTree = "<group>"; };
-		778EE4062C3E9CCA00FE70DD /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +66,6 @@
 				778EE3F62C3E9C0500FE70DD /* Utilities */,
 				778EE3F52C3E9BFA00FE70DD /* Managers */,
 				778EE3F42C3E9BF200FE70DD /* Models */,
-				778EE3F32C3E9BEC00FE70DD /* ViewModels */,
 				778EE3F22C3E9BE700FE70DD /* Views */,
 				778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */,
 				778EE3E92C3E9B7E00FE70DD /* Preview Content */,
@@ -99,14 +96,6 @@
 				778EE3F92C3E9C1B00FE70DD /* CustomViews */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		778EE3F32C3E9BEC00FE70DD /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				778EE4062C3E9CCA00FE70DD /* ListViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		778EE3F42C3E9BF200FE70DD /* Models */ = {
@@ -233,7 +222,6 @@
 				778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */,
 				778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */,
 				778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */,
-				778EE4072C3E9CCA00FE70DD /* ListViewModel.swift in Sources */,
 				778EE3FF2C3E9C6600FE70DD /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,12 +9,12 @@ import SwiftUI
 
 struct AddNewPersonScreen: View {
     
+    @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
+    
     @State private var name = ""
     @State private var date: Date = .init()
     @State private var category: Category = .Family
-    
-    @ObservedObject private var viewModel = ListViewModel()
     
     let startDate = Calendar.current.date(byAdding: .year, value: -124, to: Date())!
     let endDate = Date()
@@ -59,8 +59,8 @@ struct AddNewPersonScreen: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
-//                        let person = Person(name: name, birthday: DateFormatter.custom.string(from: date), category: category.rawValue)
-//                        viewModel.savePerson(person: person)
+                        let person = Person(name: name, birthday: DateFormatter.custom.string(from: date), category: category.rawValue)
+                        context.insert(person)
                         dismiss()
                     }
                     .disabled(isAddButtonDisable)
@@ -72,4 +72,5 @@ struct AddNewPersonScreen: View {
 
 #Preview {
     AddNewPersonScreen()
+        .modelContainer(Person.preview)
 }

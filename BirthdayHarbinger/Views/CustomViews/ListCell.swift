@@ -19,12 +19,12 @@ struct ListCell: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(person.name ?? "No Name")
+                Text(person.name)
                     .font(.system(size: 16, weight: .bold))
                     .padding(.leading)
                 
                 HStack {
-                    Text(person.birthday ?? "No Date")
+                    Text(person.birthday)
                         .font(.system(size: 14, weight: .medium))
                         .padding(.leading)
                     

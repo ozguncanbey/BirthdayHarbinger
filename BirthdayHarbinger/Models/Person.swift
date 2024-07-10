@@ -6,17 +6,19 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Person: Codable, Identifiable {
-    let id = UUID()
-    let name: String?
-    let birthday: String?
-    let category: String?
+@Model
+final class Person: Identifiable {
+    var id = UUID()
+    var name: String
+    var birthday: String
+    var category: String
     
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name = "fullname"
-        case birthday, category
+    init(name: String, birthday: String, category: String) {
+        self.name = name
+        self.birthday = birthday
+        self.category = category
     }
 }
 
@@ -24,7 +26,6 @@ extension Person {
     
     /// converts string to date
     func dateOfBirth() -> Date? {
-        guard let birthday = birthday else { return nil }
         return DateFormatter.custom.date(from: birthday)
     }
     
@@ -82,7 +83,14 @@ extension Person {
 }
 
 extension Person {
+    
     static var dummy: Person {
         .init(name: "Özgün Can Beydili", birthday: "02/10/2002", category: "Family")
+    }
+    
+    static var preview: ModelContainer {
+        let container = try! ModelContainer(for: Person.self)
+        
+        return container
     }
 }

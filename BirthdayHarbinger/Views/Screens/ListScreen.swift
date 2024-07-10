@@ -6,11 +6,23 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ListScreen: View {
-    @StateObject var viewModel = ListViewModel()
+    
+    @Environment(\.modelContext) private var context
     @State private var navigateToAddNewPersonScreen = false
-    @State private var category: Category = .All
+    @State var category: Category = .All
+    
+    @Query(sort: \Person.birthday) private var people: [Person]
+    
+    private var filteredPeople: [Person] {
+        if category == .All {
+            return people
+        } else {
+            return people.filter { $0.category == category.rawValue }
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -26,22 +38,28 @@ struct ListScreen: View {
                 .padding(.bottom)
                 .onChange(of: category) {
                     withAnimation {
-                        viewModel.filterPeople(by: category)
+                        
                     }
                 }
                 
                 TabView(selection: $category) {
                     ForEach(Category.allCases, id: \.self) { category in
-                        if viewModel.peopleSortedByDaysLeft().filter({ $0.category! == category.rawValue || category == .All }).isEmpty {
+                        if filteredPeople.isEmpty {
                             ContentUnavailableView("There is nobody", systemImage: "person.slash.fill", description: Text("Add someone to see"))
                                 .tag(category)
+                                .offset(y: -60)
                         } else {
                             ScrollView {
                                 LazyVStack {
-                                    ForEach(viewModel.peopleSortedByDaysLeft().filter { $0.category! == category.rawValue || category == .All }) { person in
+                                    ForEach(filteredPeople) { person in
                                         ListCell(person: person)
                                         Divider()
                                             .padding(.horizontal)
+                                    }
+                                    .onDelete { indexSet in
+                                        for index in indexSet {
+                                            context.delete(filteredPeople[index])
+                                        }
                                     }
                                 }
                             }
@@ -69,17 +87,12 @@ struct ListScreen: View {
             .padding(.top)
             .sheet(isPresented: $navigateToAddNewPersonScreen) {
                 AddNewPersonScreen()
-                    .onDisappear {
-                        viewModel.getPeople()
-                    }
             }
-        }
-        .onAppear {
-            viewModel.filterPeople(by: category)
         }
     }
 }
 
 #Preview {
     ListScreen()
+        .modelContainer(Person.preview)
 }
