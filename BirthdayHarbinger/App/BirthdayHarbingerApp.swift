@@ -14,6 +14,6 @@ struct BirthdayHarbingerApp: App {
         WindowGroup {
             ListScreen()
         }
-        .modelContainer(for: Person.self)
+        .modelContainer(for: _Person.self)
     }
 }

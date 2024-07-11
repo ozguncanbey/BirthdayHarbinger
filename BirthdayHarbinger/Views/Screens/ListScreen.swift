@@ -11,17 +11,16 @@ import SwiftData
 struct ListScreen: View {
     
     @Environment(\.modelContext) private var context
+    @State private var deletingPerson: _Person?
+    @State private var showAlert = false
     @State private var navigateToAddNewPersonScreen = false
     @State var category: Category = .All
     
-    @Query(sort: \Person.birthday) private var people: [Person]
+    @Query(sort: \_Person.birthday) private var people: [_Person]
     
-    private var filteredPeople: [Person] {
-        if category == .All {
-            return people
-        } else {
-            return people.filter { $0.category == category.rawValue }
-        }
+    private var filteredPeople: [_Person] {
+        let filtered = category == .All ? people : people.filter { $0.category == category.rawValue }
+        return filtered.sorted { ($0.calculateLeftDays() ?? "") < ($1.calculateLeftDays() ?? "") }
     }
     
     var body: some View {
@@ -36,11 +35,6 @@ struct ListScreen: View {
                 .pickerStyle(.segmented)
                 .padding(.horizontal)
                 .padding(.bottom)
-                .onChange(of: category) {
-                    withAnimation {
-                        
-                    }
-                }
                 
                 TabView(selection: $category) {
                     ForEach(Category.allCases, id: \.self) { category in
@@ -53,13 +47,12 @@ struct ListScreen: View {
                                 LazyVStack {
                                     ForEach(filteredPeople) { person in
                                         ListCell(person: person)
+                                            .onTapGesture {
+                                                deletingPerson = person
+                                                showAlert = true
+                                            }
                                         Divider()
                                             .padding(.horizontal)
-                                    }
-                                    .onDelete { indexSet in
-                                        for index in indexSet {
-                                            context.delete(filteredPeople[index])
-                                        }
                                     }
                                 }
                             }
@@ -88,11 +81,26 @@ struct ListScreen: View {
             .sheet(isPresented: $navigateToAddNewPersonScreen) {
                 AddNewPersonScreen()
             }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Delete Person"),
+                    message: Text("Are you sure you want to delete this person?"),
+                    primaryButton: .destructive(Text("Delete")) {
+                        if let deletingPerson = deletingPerson {
+                            context.delete(deletingPerson)
+                            self.deletingPerson = nil
+                        }
+                    },
+                    secondaryButton: .cancel {
+                        self.deletingPerson = nil
+                    }
+                )
+            }
         }
     }
 }
 
 #Preview {
     ListScreen()
-        .modelContainer(Person.preview)
+        .modelContainer(_Person.preview)
 }

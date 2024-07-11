@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ListCell: View {
-    let person: Person
+    let person: _Person
     var isBirthdayToday: Bool
     
-    init(person: Person) {
+    init(person: _Person) {
         self.person = person
         self.isBirthdayToday = person.calculateLeftDays() == "0"
     }
@@ -24,7 +24,7 @@ struct ListCell: View {
                     .padding(.leading)
                 
                 HStack {
-                    Text(person.birthday)
+                    Text(DateFormatter.custom.string(from: person.birthday))
                         .font(.system(size: 14, weight: .medium))
                         .padding(.leading)
                     

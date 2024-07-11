@@ -59,7 +59,7 @@ struct AddNewPersonScreen: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
-                        let person = Person(name: name, birthday: DateFormatter.custom.string(from: date), category: category.rawValue)
+                        let person = _Person(name: name, birthday: date, category: category.rawValue)
                         context.insert(person)
                         dismiss()
                     }
@@ -72,5 +72,5 @@ struct AddNewPersonScreen: View {
 
 #Preview {
     AddNewPersonScreen()
-        .modelContainer(Person.preview)
+        .modelContainer(_Person.preview)
 }

@@ -1,40 +1,40 @@
 //
-//  Person.swift
+//  _Person.swift
 //  BirthdayHarbinger
 //
-//  Created by Özgün Can Beydili on 10.07.2024.
+//  Created by Özgün Can Beydili on 11.07.2024.
 //
 
 import Foundation
 import SwiftData
 
 @Model
-final class Person: Identifiable {
+final class _Person: Identifiable {
     var id = UUID()
     var name: String
-    var birthday: String
+    var birthday: Date
     var category: String
     
-    init(name: String, birthday: String, category: String) {
+    init(name: String, birthday: Date, category: String) {
         self.name = name
         self.birthday = birthday
         self.category = category
     }
 }
 
-extension Person {
+extension _Person {
     
     /// converts string to date
-    func dateOfBirth() -> Date? {
-        return DateFormatter.custom.date(from: birthday)
-    }
+//    func dateOfBirth() -> Date? {
+//        return DateFormatter.custom.date(from: birthday)
+//    }
     
     /// calculates the age
     func calculateTurnsAge() -> Int {
         let calendar = Calendar.current
         let now = Date()
         
-        let ageComponents = calendar.dateComponents([.year], from: dateOfBirth()!, to: now)
+        let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
         let age = ageComponents.year ?? 0
         
         return age + 1
@@ -42,8 +42,7 @@ extension Person {
     
     /// calculates how many days between today and birthday
     func calculateLeftDays() -> String? {
-        guard let dateOfBirth = dateOfBirth() else { return nil }
-        
+
         let calendar = Calendar.current
         let now = Date()
         
@@ -58,7 +57,7 @@ extension Person {
         }
         
         // Get components for the dateOfBirth and reset the time components
-        var components = calendar.dateComponents([.month, .day], from: dateOfBirth)
+        var components = calendar.dateComponents([.month, .day], from: birthday)
         components.year = calendar.component(.year, from: today)
         
         // Calculate the birthday this year
@@ -82,15 +81,17 @@ extension Person {
     }
 }
 
-extension Person {
+extension _Person {
     
-    static var dummy: Person {
-        .init(name: "Özgün Can Beydili", birthday: "02/10/2002", category: "Family")
+    static var dummy: _Person {
+        .init(name: "Özgün Can Beydili", birthday: Date(), category: "Family")
     }
     
     static var preview: ModelContainer {
-        let container = try! ModelContainer(for: Person.self)
+        let container = try! ModelContainer(for: _Person.self)
         
         return container
     }
 }
+
+
