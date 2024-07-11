@@ -54,10 +54,20 @@ struct ListScreen: View {
                                 LazyVStack {
                                     ForEach(filteredPeople) { person in
                                         ListCell(person: person)
-                                            .onLongPressGesture {
-                                                deletingPerson = person
-                                                showAlert = true
+//                                            .onLongPressGesture {
+//                                                deletingPerson = person
+//                                                showAlert = true
+//                                            }
+                                            .swipeActions {
+                                                Button {
+                                                    deletingPerson = person
+                                                    showAlert = true
+                                                } label: {
+                                                    Label("Delete", systemImage: "trash")
+                                                }
+                                                .tint(.red)
                                             }
+                                        
                                         Divider()
                                             .padding(.horizontal)
                                     }
