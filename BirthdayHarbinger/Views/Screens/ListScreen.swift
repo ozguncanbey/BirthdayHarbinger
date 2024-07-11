@@ -16,11 +16,18 @@ struct ListScreen: View {
     @State private var navigateToAddNewPersonScreen = false
     @State var category: Category = .All
     
-    @Query(sort: \_Person.birthday) private var people: [_Person]
+    @Query private var people: [_Person]
     
     private var filteredPeople: [_Person] {
         let filtered = category == .All ? people : people.filter { $0.category == category.rawValue }
-        return filtered.sorted { ($0.calculateLeftDays() ?? "") < ($1.calculateLeftDays() ?? "") }
+        
+        return filtered.sorted { person1, person2 in
+            guard let leftDays1 = person1.calculateLeftDays(), let leftDays2 = person2.calculateLeftDays(),
+                  let days1 = Int(leftDays1), let days2 = Int(leftDays2) else {
+                return false
+            }
+            return days1 < days2
+        }
     }
     
     var body: some View {
@@ -47,7 +54,7 @@ struct ListScreen: View {
                                 LazyVStack {
                                     ForEach(filteredPeople) { person in
                                         ListCell(person: person)
-                                            .onTapGesture {
+                                            .onLongPressGesture {
                                                 deletingPerson = person
                                                 showAlert = true
                                             }
@@ -77,10 +84,6 @@ struct ListScreen: View {
                 .padding(.bottom, 10)
             }
             .navigationTitle("Birthdays")
-            .padding(.top)
-            .sheet(isPresented: $navigateToAddNewPersonScreen) {
-                AddNewPersonScreen()
-            }
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("Delete Person"),
@@ -95,6 +98,10 @@ struct ListScreen: View {
                         self.deletingPerson = nil
                     }
                 )
+            }
+            .padding(.top)
+            .sheet(isPresented: $navigateToAddNewPersonScreen) {
+                AddNewPersonScreen()
             }
         }
     }

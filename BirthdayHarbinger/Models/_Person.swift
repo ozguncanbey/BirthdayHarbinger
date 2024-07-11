@@ -24,11 +24,6 @@ final class _Person: Identifiable {
 
 extension _Person {
     
-    /// converts string to date
-//    func dateOfBirth() -> Date? {
-//        return DateFormatter.custom.date(from: birthday)
-//    }
-    
     /// calculates the age
     func calculateTurnsAge() -> Int {
         let calendar = Calendar.current
