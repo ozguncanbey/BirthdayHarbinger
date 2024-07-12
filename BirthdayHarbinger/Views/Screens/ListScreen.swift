@@ -72,7 +72,7 @@ struct ListScreen: View {
                         }
                     }
                 }
-                .tabViewStyle(.page)
+                .tabViewStyle(.page(indexDisplayMode: .always))
                 
                 Button(action: {
                     navigateToAddNewPersonScreen = true
