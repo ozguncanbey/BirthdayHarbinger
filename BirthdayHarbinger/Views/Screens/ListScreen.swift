@@ -11,8 +11,8 @@ import SwiftData
 struct ListScreen: View {
     
     @Environment(\.modelContext) private var context
-    @State private var deletingPerson: _Person?
-    @State private var showAlert = false
+//    @State private var deletingPerson: _Person?
+//    @State private var showAlert = false
     @State private var navigateToAddNewPersonScreen = false
     @State var category: Category = .All
     
@@ -43,41 +43,62 @@ struct ListScreen: View {
                 .padding(.horizontal)
                 .padding(.bottom)
                 
-                TabView(selection: $category) {
-                    ForEach(Category.allCases, id: \.self) { category in
-                        if filteredPeople.isEmpty {
-                            ContentUnavailableView("There is nobody", systemImage: "person.slash.fill", description: Text("Add someone to see"))
-                                .tag(category)
-                                .offset(y: -60)
-                        } else {
-                            ScrollView {
-                                LazyVStack {
-                                    ForEach(filteredPeople) { person in
-                                        ListCell(person: person)
-//                                            .onLongPressGesture {
-//                                                deletingPerson = person
-//                                                showAlert = true
-//                                            }
-                                            .swipeActions {
-                                                Button {
-                                                    deletingPerson = person
-                                                    showAlert = true
-                                                } label: {
-                                                    Label("Delete", systemImage: "trash")
-                                                }
-                                                .tint(.red)
-                                            }
-                                        
-                                        Divider()
-                                            .padding(.horizontal)
-                                    }
-                                }
-                            }
-                            .tag(category)
+                //                TabView(selection: $category) {
+                //                    ForEach(Category.allCases, id: \.self) { category in
+                //                        if filteredPeople.isEmpty {
+                //                            ContentUnavailableView("There is nobody", systemImage: "person.slash.fill", description: Text("Add someone to see"))
+                //                                .tag(category)
+                //                                .offset(y: -60)
+                //                        } else {
+                //                            ScrollView {
+                //                                LazyVStack {
+                //                                    ForEach(filteredPeople) { person in
+                //                                        ListCell(person: person)
+                ////                                            .onLongPressGesture {
+                ////                                                deletingPerson = person
+                ////                                                showAlert = true
+                ////                                            }
+                //                                            .swipeActions {
+                //                                                Button {
+                //                                                    deletingPerson = person
+                //                                                    showAlert = true
+                //                                                } label: {
+                //                                                    Label("Delete", systemImage: "trash")
+                //                                                }
+                //                                                .tint(.red)
+                //                                            }
+                //
+                //                                        Divider()
+                //                                            .padding(.horizontal)
+                //                                    }
+                //                                }
+                //                            }
+                //                            .tag(category)
+                //                        }
+                //                    }
+                //                }
+                //                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                
+                
+                List {
+                    ForEach(filteredPeople) { person in
+                        ListCell(person: person)
+                            .listRowSeparator(.hidden)
+                    }
+                    .onDelete { indexSet in
+                        for index in indexSet {
+                            context.delete(filteredPeople[index])
                         }
                     }
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                .animation(.smooth, value: category)
+                .listStyle(.plain)
+                .overlay {
+                    if filteredPeople.isEmpty {
+                        ContentUnavailableView("There is nobody", systemImage: "person.slash.fill", description: Text("Add someone to see"))
+                            .offset(y: -60)
+                    }
+                }
                 
                 Button(action: {
                     navigateToAddNewPersonScreen = true
@@ -94,21 +115,21 @@ struct ListScreen: View {
                 .padding(.bottom, 10)
             }
             .navigationTitle("Birthdays")
-            .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Delete Person"),
-                    message: Text("Are you sure you want to delete this person?"),
-                    primaryButton: .destructive(Text("Delete")) {
-                        if let deletingPerson = deletingPerson {
-                            context.delete(deletingPerson)
-                            self.deletingPerson = nil
-                        }
-                    },
-                    secondaryButton: .cancel {
-                        self.deletingPerson = nil
-                    }
-                )
-            }
+//            .alert(isPresented: $showAlert) {
+//                Alert(
+//                    title: Text("Delete Person"),
+//                    message: Text("Are you sure you want to delete this person?"),
+//                    primaryButton: .destructive(Text("Delete")) {
+//                        if let deletingPerson = deletingPerson {
+//                            context.delete(deletingPerson)
+//                            self.deletingPerson = nil
+//                        }
+//                    },
+//                    secondaryButton: .cancel {
+//                        self.deletingPerson = nil
+//                    }
+//                )
+//            }
             .padding(.top)
             .sheet(isPresented: $navigateToAddNewPersonScreen) {
                 AddNewPersonScreen()
