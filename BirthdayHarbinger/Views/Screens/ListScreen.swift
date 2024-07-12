@@ -11,6 +11,7 @@ import SwiftData
 struct ListScreen: View {
     
     @Environment(\.modelContext) private var context
+    @State private var editMode: EditMode = .inactive
     @State private var navigateToAddNewPersonScreen = false
     @State var category: Category = .All
     
@@ -45,13 +46,20 @@ struct ListScreen: View {
                     ForEach(Category.allCases, id: \.self) { category in
                         List {
                             ForEach(filteredPeople) { person in
-                                ListCell(person: person)
-                                    .listRowSeparator(.hidden)
-                            }
-                            .onDelete { indexSet in
-                                for index in indexSet {
-                                    context.delete(filteredPeople[index])
+                                HStack {
+                                    ListCell(person: person)
+                                    if editMode == .active {
+                                        Spacer()
+                                        Button(action: {
+                                            context.delete(person)
+                                        }) {
+                                            Image(systemName: "trash")
+                                                .foregroundColor(.red)
+                                        }
+                                        .buttonStyle(BorderlessButtonStyle())
+                                    }
                                 }
+                                .listRowSeparator(.hidden)
                             }
                         }
                         .animation(.smooth, value: category)
@@ -84,7 +92,9 @@ struct ListScreen: View {
             .padding(.top)
             .toolbar {
                 EditButton()
+                    .tint(.primary)
             }
+            .environment(\.editMode, $editMode)
             .sheet(isPresented: $navigateToAddNewPersonScreen) {
                 AddNewPersonScreen()
             }

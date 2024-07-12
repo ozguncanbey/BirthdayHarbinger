@@ -46,7 +46,7 @@ struct ListCell: View {
             VStack {
                 if isBirthdayToday {
                     Text("🎉")
-                        .font(.system(size: 40))
+                        .font(.system(size: 30))
                         .padding(10)
                 } else {
                     Text(person.calculateLeftDays() ?? "0")

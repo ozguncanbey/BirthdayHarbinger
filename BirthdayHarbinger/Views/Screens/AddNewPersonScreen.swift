@@ -32,7 +32,7 @@ struct AddNewPersonScreen: View {
                 
                 Section("Birth Date") {
                     DatePicker("Birth Date", selection: $date, in: startDate...endDate, displayedComponents: [.date])
-                        .datePickerStyle(.graphical)
+                        .datePickerStyle(.wheel)
                         .labelsHidden()
                 }
                 
