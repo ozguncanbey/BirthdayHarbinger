@@ -32,15 +32,10 @@ struct ListScreen: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Picker("", selection: $category) {
-                    ForEach(Category.allCases, id: \.self) { category in
-                        Text(category.rawValue)
-                            .tag(category)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .padding(.horizontal)
-                .padding(.bottom)
+                
+                CustomCategoryPicker(selectedCategory: $category)
+                                    .padding(.horizontal)
+                                    .padding(.bottom)
                 
                 TabView(selection: $category) {
                     ForEach(Category.allCases, id: \.self) { category in
@@ -92,7 +87,6 @@ struct ListScreen: View {
             .padding(.top)
             .toolbar {
                 EditButton()
-                    .tint(.primary)
             }
             .environment(\.editMode, $editMode)
             .sheet(isPresented: $navigateToAddNewPersonScreen) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */; };
 		778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */; };
 		778EE3E82C3E9B7E00FE70DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */; };
 		778EE3EB2C3E9B7E00FE70DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3EA2C3E9B7E00FE70DD /* Preview Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryPicker.swift; sourceTree = "<group>"; };
 		778EE3E02C3E9B7D00FE70DD /* BirthdayHarbinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirthdayHarbinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayHarbingerApp.swift; sourceTree = "<group>"; };
 		778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				778EE4002C3E9CA600FE70DD /* ListCell.swift */,
+				775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				778EE3FB2C3E9C4200FE70DD /* DateFormatter+Ext.swift in Sources */,
 				778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */,
 				778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */,
+				775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */,
 				778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */,
 				778EE4092C400E0C00FE70DD /* _Person.swift in Sources */,
 				778EE3FF2C3E9C6600FE70DD /* Category.swift in Sources */,
