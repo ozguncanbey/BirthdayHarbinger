@@ -34,8 +34,8 @@ struct ListScreen: View {
             VStack {
                 
                 CustomCategoryPicker(selectedCategory: $category)
-                                    .padding(.horizontal)
-                                    .padding(.bottom)
+                    .padding(.horizontal)
+                    .padding(.bottom)
                 
                 TabView(selection: $category) {
                     ForEach(Category.allCases, id: \.self) { category in
