@@ -18,10 +18,10 @@ struct CustomCategoryPicker: View {
                 }) {
                     VStack {
                         Text(category.rawValue)
-                            .foregroundColor(selectedCategory == category ? .blue : .secondary)
+                            .foregroundColor(selectedCategory == category ? .teal : .secondary)
                         if selectedCategory == category {
                             Rectangle()
-                                .fill(Color.blue)
+                                .fill(Color.teal)
                                 .frame(height: 2)
                                 .padding(.top, -4)
                         } else {

@@ -62,6 +62,6 @@ struct ListCell: View {
     }
 }
 
-#Preview {
-    ListCell(person: .dummy)
-}
+//#Preview {
+//    ListCell(person: .dummy)
+//}
