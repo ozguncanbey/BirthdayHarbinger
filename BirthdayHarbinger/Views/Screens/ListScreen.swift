@@ -39,32 +39,7 @@ struct ListScreen: View {
                 
                 TabView(selection: $category) {
                     ForEach(Category.allCases, id: \.self) { category in
-                        List {
-                            ForEach(filteredPeople) { person in
-                                HStack {
-                                    ListCell(person: person)
-                                    if editMode == .active {
-                                        Spacer()
-                                        Button(action: {
-                                            context.delete(person)
-                                        }) {
-                                            Image(systemName: "trash")
-                                                .foregroundColor(.red)
-                                        }
-                                        .buttonStyle(BorderlessButtonStyle())
-                                    }
-                                }
-                                .listRowSeparator(.hidden)
-                            }
-                        }
-                        .animation(.smooth, value: category)
-                        .listStyle(.plain)
-                        .overlay {
-                            if filteredPeople.isEmpty {
-                                ContentUnavailableView("There is nobody", systemImage: "person.slash.fill", description: Text("Add someone to see"))
-                                    .offset(y: -60)
-                            }
-                        }
+                        FilteredListView(editMode: $editMode, category: category, people: people)
                     }
                 }
                 .tabViewStyle(.page(indexDisplayMode: .always))

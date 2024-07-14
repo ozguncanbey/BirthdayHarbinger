@@ -13,6 +13,7 @@ struct BirthdayHarbingerApp: App {
     var body: some Scene {
         WindowGroup {
             ListScreen()
+                .preferredColorScheme(.light)
         }
         .modelContainer(for: _Person.self)
     }

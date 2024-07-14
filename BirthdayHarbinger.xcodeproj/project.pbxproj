@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		773089322C4407B000933E51 /* FilteredListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773089312C4407B000933E51 /* FilteredListView.swift */; };
 		775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */; };
 		778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */; };
 		778EE3E82C3E9B7E00FE70DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		773089312C4407B000933E51 /* FilteredListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredListView.swift; sourceTree = "<group>"; };
 		775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryPicker.swift; sourceTree = "<group>"; };
 		778EE3E02C3E9B7D00FE70DD /* BirthdayHarbinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirthdayHarbinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayHarbingerApp.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		778EE3F92C3E9C1B00FE70DD /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				773089312C4407B000933E51 /* FilteredListView.swift */,
 				778EE4002C3E9CA600FE70DD /* ListCell.swift */,
 				775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */,
 			);
@@ -221,6 +224,7 @@
 			files = (
 				778EE4052C3E9CB500FE70DD /* ListScreen.swift in Sources */,
 				778EE3FB2C3E9C4200FE70DD /* DateFormatter+Ext.swift in Sources */,
+				773089322C4407B000933E51 /* FilteredListView.swift in Sources */,
 				778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */,
 				778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */,
 				775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */,
