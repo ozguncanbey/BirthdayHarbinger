@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  BirthdayHarbinger
+
+  Created by Özgün Can Beydili on 15.07.2024.
+  
+*/
+
+"Add person" = "Add person";
+"navigationTitle" = "Birthdays";
+"Days" = "Days";
+"birthdayMessage" = "Happy Birthday!";
+"All" = "All";
+"Family" = "Family";
+"Friend" = "Friend";
+"Other" = "Other";
+"addNewPersonTitle" = "Add New Person";
+"Cancel" = "Cancel";
+"Add" = "Add";
+"Name" = "Name";
+"Birth Date" = "Birth Date";
+"Category" = "Category";
+"Delete" = "Delete";
+"alertTitle" = "Delete Person";

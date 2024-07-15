@@ -40,14 +40,14 @@ struct AddNewPersonScreen: View {
                     HStack {
                         Picker("Category", selection: $category){
                             ForEach(Category.selectableCategories, id: \.self) {
-                                Text($0.rawValue)
+                                Text($0.localizedString)
                             }
                         }
                         .pickerStyle(.menu)
                     }
                 }
             }
-            .navigationTitle("Add New Person")
+            .navigationTitle("addNewPersonTitle")
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

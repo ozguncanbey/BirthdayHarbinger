@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  BirthdayHarbinger
+
+  Created by Özgün Can Beydili on 15.07.2024.
+  
+*/
+
+"Add person" = "Kişi ekle";
+"navigationTitle" = "Doğum Günleri";
+"Days" = "Gün";
+"birthdayMessage" = "Doğum Günü Kutlu Olsun!";
+"All" = "Tümü";
+"Family" = "Aile";
+"Friend" = "Arkadaş";
+"Other" = "Diğer";
+"addNewPersonTitle" = "Yeni Kişi Ekle";
+"Cancel" = "İptal";
+"Add" = "Ekle";
+"Name" = "İsim";
+"Birth Date" = "Doğum Tarihi";
+"Category" = "Kategori";
+"Delete" = "Sil";
+"alertTitle" = "Kişiyi Sil";

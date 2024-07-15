@@ -29,13 +29,19 @@ struct ListCell: View {
                         .padding(.leading)
                     
                     if isBirthdayToday {
-                        Text("Happy Birthday!")
+                        Text("birthdayMessage")
                             .font(.system(size: 14, weight: .medium))
                             .padding(10)
                     } else {
-                        Text("turns \(person.calculateTurnsAge())")
-                            .font(.system(size: 14, weight: .medium))
-                            .padding(10)
+                        if Locale.current.isTurkish {
+                            Text("\(person.calculateTurnsAge()) olacak")
+                                .font(.system(size: 14, weight: .medium))
+                                .padding(10)
+                        } else {
+                            Text("turns \(person.calculateTurnsAge())")
+                                .font(.system(size: 14, weight: .medium))
+                                .padding(10)
+                        }
                     }
                 }
             }

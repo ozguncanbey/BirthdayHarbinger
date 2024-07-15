@@ -35,7 +35,6 @@ struct ListScreen: View {
                 
                 CustomCategoryPicker(selectedCategory: $category)
                     .padding(.horizontal)
-                    .padding(.bottom)
                 
                 TabView(selection: $category) {
                     ForEach(Category.allCases, id: \.self) { category in
@@ -58,20 +57,19 @@ struct ListScreen: View {
                 .padding(.horizontal)
                 .padding(.bottom, 10)
             }
-            .navigationTitle("Birthdays")
+            .navigationTitle("navigationTitle")
             .padding(.top)
             .toolbar {
                 EditButton()
-                    .tint(.teal)
             }
-            .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [Color.purple.opacity(0.4), Color.yellow.opacity(0.2), Color.pink.opacity(0.3)]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-                .edgesIgnoringSafeArea(.all)
-            )
+//            .background(
+//                LinearGradient(
+//                    gradient: Gradient(colors: [Color.red, Color.pink, Color.yellow, Color.blue]),
+//                    startPoint: .topLeading,
+//                    endPoint: .bottomTrailing
+//                )
+//                .edgesIgnoringSafeArea(.all)
+//            )
             .environment(\.editMode, $editMode)
             .sheet(isPresented: $navigateToAddNewPersonScreen) {
                 AddNewPersonScreen()

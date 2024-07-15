@@ -12,6 +12,10 @@ enum Category: String, CaseIterable {
     case Family
     case Friend
     case Other
+    
+    var localizedString: String {
+        NSLocalizedString(self.rawValue, comment: "")
+    }
 }
 
 extension Category {

@@ -17,11 +17,11 @@ struct CustomCategoryPicker: View {
                     selectedCategory = category
                 }) {
                     VStack {
-                        Text(category.rawValue)
-                            .foregroundColor(selectedCategory == category ? .teal : .secondary)
+                        Text(category.localizedString)
+                            .foregroundColor(selectedCategory == category ? .blue : .secondary)
                         if selectedCategory == category {
                             Rectangle()
-                                .fill(Color.teal)
+                                .fill(Color.blue)
                                 .frame(height: 2)
                                 .padding(.top, -4)
                         } else {
