@@ -22,3 +22,6 @@
 "Category" = "Kategori";
 "Delete" = "Sil";
 "alertTitle" = "Kişiyi Sil";
+"Photo" = "Fotoğraf";
+"selectPhotoHip" = "Fotoğraf seçmek için tıkla";
+"photoButton" = "Fotoğrafı Kaldır";

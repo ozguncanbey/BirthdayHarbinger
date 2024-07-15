@@ -18,28 +18,48 @@ struct ListCell: View {
     
     var body: some View {
         HStack {
+            ZStack {
+                Circle()
+                    .foregroundColor(.gray.opacity(0.4))
+                    .frame(width: 50, height: 50)
+                
+//                if let imageData = person.image, let uiImage = UIImage(data: imageData) {
+//                    Image(uiImage: uiImage)
+//                        .resizable()
+//                        .scaledToFill()
+//                        .clipShape(Circle())
+//                } else {
+//                    Image(systemName: "person.circle")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .foregroundColor(.gray)
+//                        .clipShape(Circle())
+//                }
+            }
+            .frame(width: 50, height: 50)
+            
             VStack(alignment: .leading) {
                 Text(person.name)
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 14, weight: .bold))
                     .padding(.leading)
                 
                 HStack {
                     Text(person.birthday, format: Date.FormatStyle().day().month().year())
-                        .font(.system(size: 14, weight: .medium))
+                        .font(.system(size: 12, weight: .medium))
                         .padding(.leading)
                     
                     if isBirthdayToday {
                         Text("birthdayMessage")
-                            .font(.system(size: 14, weight: .medium))
+                            .font(.system(size: 12, weight: .medium))
                             .padding(10)
                     } else {
                         if Locale.current.isTurkish {
                             Text("\(person.calculateTurnsAge()) olacak")
-                                .font(.system(size: 14, weight: .medium))
+                                .font(.system(size: 12, weight: .medium))
                                 .padding(10)
                         } else {
                             Text("turns \(person.calculateTurnsAge())")
-                                .font(.system(size: 14, weight: .medium))
+                                .font(.system(size: 12, weight: .medium))
                                 .padding(10)
                         }
                     }
@@ -56,10 +76,10 @@ struct ListCell: View {
                         .padding(10)
                 } else {
                     Text(person.calculateLeftDays() ?? "0")
-                        .font(.system(size: 16, weight: .bold))
+                        .font(.system(size: 14, weight: .bold))
                     
                     Text(person.calculateLeftDays() == "1" ? "Day" : "Days")
-                        .font(.system(size: 16, weight: .medium))
+                        .font(.system(size: 14, weight: .medium))
                         .padding(10)
                 }
             }

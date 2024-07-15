@@ -5,12 +5,13 @@
 //  Created by Özgün Can Beydili on 11.07.2024.
 //
 
-import Foundation
+import SwiftUI
 import SwiftData
 
 @Model
 final class _Person: Identifiable {
     var id = UUID()
+//    var image: UIImage
     var name: String
     var birthday: Date
     var category: String

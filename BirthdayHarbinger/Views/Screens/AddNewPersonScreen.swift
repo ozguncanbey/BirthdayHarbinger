@@ -12,13 +12,14 @@ struct AddNewPersonScreen: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     
+    @State private var selectedImage: UIImage? = nil
     @State private var name = ""
     @State private var date: Date = .init()
     @State private var category: Category = .Family
     
     let startDate = Calendar.current.date(byAdding: .year, value: -124, to: Date())!
     let endDate = Date()
-
+    
     private var isAddButtonDisable: Bool {
         name.isEmpty
     }
@@ -26,6 +27,27 @@ struct AddNewPersonScreen: View {
     var body: some View {
         NavigationStack {
             List {
+                Section("Photo") {
+                    VStack {
+                        Text("selectPhotoHip")
+                            .font(.system(.footnote))
+                            .foregroundColor(.secondary)
+                            .padding(.bottom)
+                        
+                        PhotoPickerView(selectedImage: $selectedImage)
+                        
+                        if selectedImage != nil {
+                            Button("photoButton") {
+                                selectedImage = nil
+                            }
+                            .padding(.top)
+                            .font(.callout)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                }
+                .listRowSeparator(.hidden)
+                
                 Section("Name") {
                     TextField("Name", text: $name)
                 }
