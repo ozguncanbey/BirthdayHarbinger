@@ -24,7 +24,7 @@ struct ListCell: View {
                     .padding(.leading)
                 
                 HStack {
-                    Text(DateFormatter.custom.string(from: person.birthday))
+                    Text(person.birthday, format: Date.FormatStyle().day().month().year())
                         .font(.system(size: 14, weight: .medium))
                         .padding(.leading)
                     
