@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		773089322C4407B000933E51 /* FilteredListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773089312C4407B000933E51 /* FilteredListView.swift */; };
 		775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */; };
+		7761E2632C46B3EB00D2FCD2 /* Personn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761E2622C46B3EB00D2FCD2 /* Personn.swift */; };
 		778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */; };
 		778EE3E82C3E9B7E00FE70DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */; };
 		778EE3EB2C3E9B7E00FE70DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3EA2C3E9B7E00FE70DD /* Preview Assets.xcassets */; };
@@ -16,16 +17,16 @@
 		778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4002C3E9CA600FE70DD /* ListCell.swift */; };
 		778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */; };
 		778EE4052C3E9CB500FE70DD /* ListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4032C3E9CB500FE70DD /* ListScreen.swift */; };
-		778EE4092C400E0C00FE70DD /* _Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4082C400E0C00FE70DD /* _Person.swift */; };
 		77CCCF7E2C4557FB009EA9DC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77CCCF7C2C4557FB009EA9DC /* Localizable.strings */; };
 		77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF802C45642E009EA9DC /* Locale+Ext.swift */; };
 		77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */; };
-		77CCCF872C45735B009EA9DC /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF862C45735B009EA9DC /* PhotoPickerView.swift */; };
+		77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		773089312C4407B000933E51 /* FilteredListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredListView.swift; sourceTree = "<group>"; };
 		775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryPicker.swift; sourceTree = "<group>"; };
+		7761E2622C46B3EB00D2FCD2 /* Personn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personn.swift; sourceTree = "<group>"; };
 		778EE3E02C3E9B7D00FE70DD /* BirthdayHarbinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirthdayHarbinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayHarbingerApp.swift; sourceTree = "<group>"; };
 		778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -34,12 +35,11 @@
 		778EE4002C3E9CA600FE70DD /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewPersonScreen.swift; sourceTree = "<group>"; };
 		778EE4032C3E9CB500FE70DD /* ListScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListScreen.swift; sourceTree = "<group>"; };
-		778EE4082C400E0C00FE70DD /* _Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Person.swift; sourceTree = "<group>"; };
 		77CCCF7D2C4557FB009EA9DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77CCCF7F2C455820009EA9DC /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77CCCF802C45642E009EA9DC /* Locale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+Ext.swift"; sourceTree = "<group>"; };
 		77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Ext.swift"; sourceTree = "<group>"; };
-		77CCCF862C45735B009EA9DC /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
+		77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +111,7 @@
 		778EE3F42C3E9BF200FE70DD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				778EE4082C400E0C00FE70DD /* _Person.swift */,
+				7761E2622C46B3EB00D2FCD2 /* Personn.swift */,
 				778EE3FE2C3E9C6600FE70DD /* Category.swift */,
 			);
 			path = Models;
@@ -141,7 +141,7 @@
 				773089312C4407B000933E51 /* FilteredListView.swift */,
 				778EE4002C3E9CA600FE70DD /* ListCell.swift */,
 				775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */,
-				77CCCF862C45735B009EA9DC /* PhotoPickerView.swift */,
+				77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -225,8 +225,8 @@
 				775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */,
 				778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */,
 				77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */,
-				778EE4092C400E0C00FE70DD /* _Person.swift in Sources */,
-				77CCCF872C45735B009EA9DC /* PhotoPickerView.swift in Sources */,
+				77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */,
+				7761E2632C46B3EB00D2FCD2 /* Personn.swift in Sources */,
 				77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */,
 				778EE3FF2C3E9C6600FE70DD /* Category.swift in Sources */,
 			);

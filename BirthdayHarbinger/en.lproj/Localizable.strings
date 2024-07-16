@@ -24,4 +24,4 @@
 "alertTitle" = "Delete Person";
 "Photo" = "Photo";
 "selectPhotoHip" = "Tap for select photo";
-"photoButton" = "Remove Photo";
+"removePhotoButton" = "Remove Photo";

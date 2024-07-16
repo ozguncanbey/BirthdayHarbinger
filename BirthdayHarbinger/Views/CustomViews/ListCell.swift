@@ -8,45 +8,38 @@
 import SwiftUI
 
 struct ListCell: View {
-    let person: _Person
+    let person: Personn
     var isBirthdayToday: Bool
     
-    init(person: _Person) {
+    init(person: Personn) {
         self.person = person
         self.isBirthdayToday = person.calculateLeftDays() == "0"
     }
     
     var body: some View {
         HStack {
-            ZStack {
-                Circle()
-                    .foregroundColor(.gray.opacity(0.4))
-                    .frame(width: 50, height: 50)
-                
-//                if let imageData = person.image, let uiImage = UIImage(data: imageData) {
-//                    Image(uiImage: uiImage)
-//                        .resizable()
-//                        .scaledToFill()
-//                        .clipShape(Circle())
-//                } else {
-//                    Image(systemName: "person.circle")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .foregroundColor(.gray)
-//                        .clipShape(Circle())
-//                }
+            if let imageData = person.imageData, let uiImage = UIImage(data: imageData) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFill()
+                    .clipShape(.circle)
+                    .frame(width: 60, height: 60, alignment: .center)
+            } else {
+                Image(systemName: "person.crop.circle.fill")
+                    .resizable()
+                    .scaledToFill()
+                    .foregroundColor(.secondary)
+                    .clipShape(.circle)
+                    .frame(width: 60, height: 60, alignment: .center)
             }
-            .frame(width: 50, height: 50)
             
             VStack(alignment: .leading) {
                 Text(person.name)
                     .font(.system(size: 14, weight: .bold))
-                    .padding(.leading)
                 
                 HStack {
                     Text(person.birthday, format: Date.FormatStyle().day().month().year())
                         .font(.system(size: 12, weight: .medium))
-                        .padding(.leading)
                     
                     if isBirthdayToday {
                         Text("birthdayMessage")
@@ -54,7 +47,7 @@ struct ListCell: View {
                             .padding(10)
                     } else {
                         if Locale.current.isTurkish {
-                            Text("\(person.calculateTurnsAge()) olacak")
+                            Text("\(person.calculateTurnsAge()) olmaya")
                                 .font(.system(size: 12, weight: .medium))
                                 .padding(10)
                         } else {
@@ -72,7 +65,7 @@ struct ListCell: View {
             VStack {
                 if isBirthdayToday {
                     Text("🎉")
-                        .font(.system(size: 40))
+                        .font(.system(size: 35))
                         .padding(10)
                 } else {
                     Text(person.calculateLeftDays() ?? "0")

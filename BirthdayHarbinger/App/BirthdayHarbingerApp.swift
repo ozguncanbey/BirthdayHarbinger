@@ -15,6 +15,6 @@ struct BirthdayHarbingerApp: App {
             ListScreen()
                 .preferredColorScheme(.light)
         }
-        .modelContainer(for: _Person.self)
+        .modelContainer(for: Personn.self)
     }
 }

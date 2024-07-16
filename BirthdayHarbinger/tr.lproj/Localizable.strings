@@ -23,5 +23,5 @@
 "Delete" = "Sil";
 "alertTitle" = "Kişiyi Sil";
 "Photo" = "Fotoğraf";
-"selectPhotoHip" = "Fotoğraf seçmek için tıkla";
-"photoButton" = "Fotoğrafı Kaldır";
+"selectPhotoHip" = "Fotoğraf seçmek için tıklayın";
+"removePhotoButton" = "Fotoğrafı Kaldır";

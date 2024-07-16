@@ -1,5 +1,5 @@
 //
-//  _Person.swift
+//  Personn.swift
 //  BirthdayHarbinger
 //
 //  Created by Özgün Can Beydili on 11.07.2024.
@@ -9,9 +9,9 @@ import SwiftUI
 import SwiftData
 
 @Model
-final class _Person: Identifiable {
+final class Personn: Identifiable {
     var id = UUID()
-//    var image: UIImage
+    var imageData: Data?
     var name: String
     var birthday: Date
     var category: String
@@ -23,7 +23,7 @@ final class _Person: Identifiable {
     }
 }
 
-extension _Person {
+extension Personn {
     
     /// calculates the age
     func calculateTurnsAge() -> Int {
@@ -77,17 +77,48 @@ extension _Person {
     }
 }
 
-extension _Person {
+extension Personn {
     
-    static var dummy: _Person {
+    static var dummy: Personn {
         .init(name: "Özgün Can Beydili", birthday: Date(), category: "Family")
     }
     
     static var preview: ModelContainer {
-        let container = try! ModelContainer(for: _Person.self)
+        let container = try! ModelContainer(for: Personn.self)
         
         return container
     }
 }
 
-
+//actor PreviewSampleData {
+//    @MainActor
+//    static var container: ModelContainer = {
+//        return try! inMemoryContainer()
+//    }()
+//
+//    static var inMemoryContainer: () throws -> ModelContainer = {
+//        let schema = Schema([Personn.self])
+//        let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+//        let container = try ModelContainer(for: schema, configurations: [configuration])
+//
+//        let sampleData: [any PersistentModel] = [
+//            Personn.dummy
+//        ]
+//
+//        Task { @MainActor in
+//            sampleData.forEach {
+//                container.mainContext.insert($0)
+//            }
+//        }
+//
+//        return container
+//    }
+//}
+//
+//// Preview
+//extension Personn {
+//    static var preview: ModelContainer {
+//        return try! PreviewSampleData.inMemoryContainer()
+//    }
+//}
+//

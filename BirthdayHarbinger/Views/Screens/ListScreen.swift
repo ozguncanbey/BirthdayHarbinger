@@ -15,9 +15,9 @@ struct ListScreen: View {
     @State private var navigateToAddNewPersonScreen = false
     @State var category: Category = .All
     
-    @Query private var people: [_Person]
+    @Query private var people: [Personn]
     
-    private var filteredPeople: [_Person] {
+    private var filteredPeople: [Personn] {
         let filtered = category == .All ? people : people.filter { $0.category == category.rawValue }
         
         return filtered.sorted { person1, person2 in
@@ -62,14 +62,6 @@ struct ListScreen: View {
             .toolbar {
                 EditButton()
             }
-//            .background(
-//                LinearGradient(
-//                    gradient: Gradient(colors: [Color.red, Color.pink, Color.yellow, Color.blue]),
-//                    startPoint: .topLeading,
-//                    endPoint: .bottomTrailing
-//                )
-//                .edgesIgnoringSafeArea(.all)
-//            )
             .environment(\.editMode, $editMode)
             .sheet(isPresented: $navigateToAddNewPersonScreen) {
                 AddNewPersonScreen()
@@ -80,5 +72,5 @@ struct ListScreen: View {
 
 #Preview {
     ListScreen()
-        .modelContainer(_Person.preview)
+        .modelContainer(Personn.preview)
 }

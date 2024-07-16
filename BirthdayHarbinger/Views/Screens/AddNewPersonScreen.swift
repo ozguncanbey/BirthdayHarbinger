@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct AddNewPersonScreen: View {
     
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     
-    @State private var selectedImage: UIImage? = nil
+    @State private var selectedImage: PhotosPickerItem? = nil
+    @State private var selectedImageData: Data?
     @State private var name = ""
     @State private var date: Date = .init()
     @State private var category: Category = .Family
@@ -28,23 +30,23 @@ struct AddNewPersonScreen: View {
         NavigationStack {
             List {
                 Section("Photo") {
-                    VStack {
-                        Text("selectPhotoHip")
-                            .font(.system(.footnote))
-                            .foregroundColor(.secondary)
-                            .padding(.bottom)
-                        
-                        PhotoPickerView(selectedImage: $selectedImage)
-                        
-                        if selectedImage != nil {
-                            Button("photoButton") {
-                                selectedImage = nil
-                            }
-                            .padding(.top)
-                            .font(.callout)
+                    Text("selectPhotoHip")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
+//                        .padding(.bottom)
+                        .frame(maxWidth: .infinity)
+                    
+                    PhotosPickerView(selectedImage: $selectedImage, selectedImageData: $selectedImageData)
+                        .frame(maxWidth: .infinity)
+                    
+                    if selectedImage != nil {
+                        Button("removePhotoButton") {
+                            selectedImage = nil
+                            selectedImageData = nil
                         }
+                        .frame(maxWidth: .infinity)
+                        .font(.callout)
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
                 }
                 .listRowSeparator(.hidden)
                 
@@ -81,11 +83,17 @@ struct AddNewPersonScreen: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
-                        let person = _Person(name: name, birthday: date, category: category.rawValue)
+                        let person = Personn(name: name, birthday: date, category: category.rawValue)
+                        person.imageData = selectedImageData
                         context.insert(person)
                         dismiss()
                     }
                     .disabled(isAddButtonDisable)
+                }
+            }
+            .task(id: selectedImage) {
+                if let data = try? await selectedImage?.loadTransferable(type: Data.self) {
+                    selectedImageData = data
                 }
             }
         }
@@ -94,5 +102,5 @@ struct AddNewPersonScreen: View {
 
 #Preview {
     AddNewPersonScreen()
-        .modelContainer(_Person.preview)
+        .modelContainer(Personn.preview)
 }

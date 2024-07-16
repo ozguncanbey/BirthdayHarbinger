@@ -13,10 +13,10 @@ struct FilteredListView: View {
     @Environment(\.modelContext) private var context
     @Binding var editMode: EditMode
     var category: Category
-    var people: [_Person]
+    var people: [Personn]
     
     @State private var showAlert = false
-    @State private var personToDelete: _Person?
+    @State private var personToDelete: Personn?
     
     private var alertMessage: String {
         if Locale.current.isTurkish {
@@ -26,7 +26,7 @@ struct FilteredListView: View {
         }
     }
     
-    var filteredPeople: [_Person] {
+    var filteredPeople: [Personn] {
         let filtered = category == .All ? people : people.filter { $0.category == category.rawValue }
         
         return filtered.sorted { person1, person2 in
@@ -69,7 +69,6 @@ struct FilteredListView: View {
                     }
                 }
                 .listRowBackground(index % 2 == 0 ? Color.clear : Color.gray.opacity(0.1))
-//                .listRowBackground(Color.clear)
                 .listRowSeparator(.hidden)
             }
         }
