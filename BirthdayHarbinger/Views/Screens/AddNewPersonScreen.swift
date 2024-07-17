@@ -13,6 +13,8 @@ struct AddNewPersonScreen: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     
+    private let notificationManager = NotificationManager.self
+    
     @State private var selectedImage: PhotosPickerItem? = nil
     @State private var selectedImageData: Data?
     @State private var name = ""
@@ -86,6 +88,7 @@ struct AddNewPersonScreen: View {
                         let person = Personn(name: name, birthday: date, category: category.rawValue)
                         person.imageData = selectedImageData
                         context.insert(person)
+                        notificationManager.shared.scheduleNotification(for: person)
                         dismiss()
                     }
                     .disabled(isAddButtonDisable)

@@ -25,3 +25,6 @@
 "Photo" = "Photo";
 "selectPhotoHip" = "Tap for select photo";
 "removePhotoButton" = "Remove Photo";
+"notificationTitle" = "'s Birthday 🎉";
+"notificationMessage" = "Don't forget to celebrate!";
+"today" = "Today is ";

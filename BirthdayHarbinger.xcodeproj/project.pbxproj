@@ -21,6 +21,7 @@
 		77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF802C45642E009EA9DC /* Locale+Ext.swift */; };
 		77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */; };
 		77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */; };
+		77EBA3D82C47F22D008C0E5C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBA3D72C47F22C008C0E5C /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		77CCCF802C45642E009EA9DC /* Locale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+Ext.swift"; sourceTree = "<group>"; };
 		77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Ext.swift"; sourceTree = "<group>"; };
 		77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPickerView.swift; sourceTree = "<group>"; };
+		77EBA3D72C47F22C008C0E5C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				778EE3F12C3E9BE100FE70DD /* App */,
 				778EE3F72C3E9C0D00FE70DD /* Extension */,
+				77EBA3D62C47F214008C0E5C /* Managers */,
 				778EE3F42C3E9BF200FE70DD /* Models */,
 				778EE3F22C3E9BE700FE70DD /* Views */,
 				778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */,
@@ -144,6 +147,14 @@
 				77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		77EBA3D62C47F214008C0E5C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				77EBA3D72C47F22C008C0E5C /* NotificationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +240,7 @@
 				778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */,
 				775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */,
 				778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */,
+				77EBA3D82C47F22D008C0E5C /* NotificationManager.swift in Sources */,
 				77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */,
 				77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */,
 				7761E2632C46B3EB00D2FCD2 /* Personn.swift in Sources */,

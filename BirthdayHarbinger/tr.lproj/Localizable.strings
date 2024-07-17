@@ -25,3 +25,6 @@
 "Photo" = "Fotoğraf";
 "selectPhotoHip" = "Fotoğraf seçmek için tıklayın";
 "removePhotoButton" = "Fotoğrafı Kaldır";
+"notificationTitle" = "'in Doğum Günü 🎉";
+"notificationMessage" = "Kutlamayı unutmayın!";
+"today" = "Bugün ";

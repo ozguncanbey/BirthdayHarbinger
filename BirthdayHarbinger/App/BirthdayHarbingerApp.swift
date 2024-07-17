@@ -14,6 +14,9 @@ struct BirthdayHarbingerApp: App {
         WindowGroup {
             ListScreen()
                 .preferredColorScheme(.light)
+                .onAppear {
+                    NotificationManager.shared.requestAuthorization()
+                }
         }
         .modelContainer(for: Personn.self)
     }

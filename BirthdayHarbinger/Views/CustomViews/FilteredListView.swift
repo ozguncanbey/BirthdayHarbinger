@@ -61,6 +61,7 @@ struct FilteredListView: View {
                                 primaryButton: .destructive(Text("Delete")) {
                                     if let personToDelete = personToDelete {
                                         context.delete(personToDelete)
+                                        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [personToDelete.id.uuidString])
                                     }
                                 },
                                 secondaryButton: .cancel()

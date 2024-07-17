@@ -66,6 +66,9 @@ struct ListScreen: View {
                 AddNewPersonScreen()
             }
         }
+        .onAppear {
+            UNUserNotificationCenter.current().setBadgeCount(0)
+        }
     }
 }
 
