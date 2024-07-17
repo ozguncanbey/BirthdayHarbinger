@@ -33,13 +33,12 @@ struct AddNewPersonScreen: View {
                     Text("selectPhotoHip")
                         .font(.system(.footnote))
                         .foregroundColor(.secondary)
-//                        .padding(.bottom)
                         .frame(maxWidth: .infinity)
                     
                     PhotosPickerView(selectedImage: $selectedImage, selectedImageData: $selectedImageData)
                         .frame(maxWidth: .infinity)
                     
-                    if selectedImage != nil {
+                    if selectedImageData != nil {
                         Button("removePhotoButton") {
                             selectedImage = nil
                             selectedImageData = nil

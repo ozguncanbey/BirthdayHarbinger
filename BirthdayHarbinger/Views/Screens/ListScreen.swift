@@ -32,7 +32,6 @@ struct ListScreen: View {
     var body: some View {
         NavigationStack {
             VStack {
-                
                 CustomCategoryPicker(selectedCategory: $category)
                     .padding(.horizontal)
                 

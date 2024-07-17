@@ -21,6 +21,7 @@
 		77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF802C45642E009EA9DC /* Locale+Ext.swift */; };
 		77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */; };
 		77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */; };
+		77EBA3D52C47DA56008C0E5C /* SwiftyCrop in Frameworks */ = {isa = PBXBuildFile; productRef = 77EBA3D42C47DA56008C0E5C /* SwiftyCrop */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77EBA3D52C47DA56008C0E5C /* SwiftyCrop in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +164,9 @@
 			dependencies = (
 			);
 			name = BirthdayHarbinger;
+			packageProductDependencies = (
+				77EBA3D42C47DA56008C0E5C /* SwiftyCrop */,
+			);
 			productName = BirthdayHarbinger;
 			productReference = 778EE3E02C3E9B7D00FE70DD /* BirthdayHarbinger.app */;
 			productType = "com.apple.product-type.application";
@@ -191,6 +196,9 @@
 				tr,
 			);
 			mainGroup = 778EE3D72C3E9B7D00FE70DD;
+			packageReferences = (
+				77EBA3D32C47DA56008C0E5C /* XCRemoteSwiftPackageReference "SwiftyCrop" */,
+			);
 			productRefGroup = 778EE3E12C3E9B7D00FE70DD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -446,6 +454,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		77EBA3D32C47DA56008C0E5C /* XCRemoteSwiftPackageReference "SwiftyCrop" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/benedom/SwiftyCrop";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		77EBA3D42C47DA56008C0E5C /* SwiftyCrop */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77EBA3D32C47DA56008C0E5C /* XCRemoteSwiftPackageReference "SwiftyCrop" */;
+			productName = SwiftyCrop;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 778EE3D82C3E9B7D00FE70DD /* Project object */;
 }
