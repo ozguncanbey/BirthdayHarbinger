@@ -27,7 +27,7 @@ struct PhotosPickerView: View {
                         .resizable()
                         .scaledToFill()
                         .clipShape(.circle)
-                        .tint(.secondary)
+                        .foregroundColor(.secondary)
                 }
             }
             .frame(width: 100, height: 100, alignment: .center)

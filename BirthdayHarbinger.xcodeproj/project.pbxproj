@@ -21,7 +21,6 @@
 		77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF802C45642E009EA9DC /* Locale+Ext.swift */; };
 		77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */; };
 		77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */; };
-		77EBA3D52C47DA56008C0E5C /* SwiftyCrop in Frameworks */ = {isa = PBXBuildFile; productRef = 77EBA3D42C47DA56008C0E5C /* SwiftyCrop */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +47,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77EBA3D52C47DA56008C0E5C /* SwiftyCrop in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +163,6 @@
 			);
 			name = BirthdayHarbinger;
 			packageProductDependencies = (
-				77EBA3D42C47DA56008C0E5C /* SwiftyCrop */,
 			);
 			productName = BirthdayHarbinger;
 			productReference = 778EE3E02C3E9B7D00FE70DD /* BirthdayHarbinger.app */;
@@ -385,11 +382,12 @@
 				DEVELOPMENT_TEAM = 76ZJ9H6F4F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Birthday Harbinger";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -414,11 +412,12 @@
 				DEVELOPMENT_TEAM = 76ZJ9H6F4F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Birthday Harbinger";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,14 +464,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		77EBA3D42C47DA56008C0E5C /* SwiftyCrop */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 77EBA3D32C47DA56008C0E5C /* XCRemoteSwiftPackageReference "SwiftyCrop" */;
-			productName = SwiftyCrop;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 778EE3D82C3E9B7D00FE70DD /* Project object */;
 }
