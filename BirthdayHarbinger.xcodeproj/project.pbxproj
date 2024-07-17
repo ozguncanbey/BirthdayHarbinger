@@ -28,7 +28,7 @@
 		773089312C4407B000933E51 /* FilteredListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredListView.swift; sourceTree = "<group>"; };
 		775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryPicker.swift; sourceTree = "<group>"; };
 		7761E2622C46B3EB00D2FCD2 /* Personn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personn.swift; sourceTree = "<group>"; };
-		778EE3E02C3E9B7D00FE70DD /* BirthdayHarbinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirthdayHarbinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		778EE3E02C3E9B7D00FE70DD /* Birthday Harbinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Birthday Harbinger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayHarbingerApp.swift; sourceTree = "<group>"; };
 		778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		778EE3EA2C3E9B7E00FE70DD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 		778EE3E12C3E9B7D00FE70DD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				778EE3E02C3E9B7D00FE70DD /* BirthdayHarbinger.app */,
+				778EE3E02C3E9B7D00FE70DD /* Birthday Harbinger.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -176,7 +176,7 @@
 			packageProductDependencies = (
 			);
 			productName = BirthdayHarbinger;
-			productReference = 778EE3E02C3E9B7D00FE70DD /* BirthdayHarbinger.app */;
+			productReference = 778EE3E02C3E9B7D00FE70DD /* Birthday Harbinger.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -406,7 +406,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ozguncanbeydili.BirthdayHarbinger;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Birthday Harbinger";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -436,7 +436,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ozguncanbeydili.BirthdayHarbinger;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Birthday Harbinger";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
