@@ -57,6 +57,7 @@ struct AddNewPersonScreen: View {
                     DatePicker("Birth Date", selection: $date, in: startDate...endDate, displayedComponents: [.date])
                         .datePickerStyle(.wheel)
                         .labelsHidden()
+                        .frame(maxWidth: .infinity)
                 }
                 
                 Section() {

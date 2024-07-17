@@ -83,4 +83,5 @@ struct ListCell: View {
 
 //#Preview {
 //    ListCell(person: .dummy)
+//        .modelContainer(Personn.preview)
 //}

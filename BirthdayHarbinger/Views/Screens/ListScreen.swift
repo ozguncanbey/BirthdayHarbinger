@@ -47,8 +47,8 @@ struct ListScreen: View {
                 }, label: {
                     Text("Add person")
                         .font(.headline)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 30)
+                        .padding(.vertical, .dHeight / 140)
+                        .padding(.horizontal, .dWidth / 12)
                         .background(Color(UIColor.black))
                         .foregroundColor(.white)
                         .cornerRadius(20)
