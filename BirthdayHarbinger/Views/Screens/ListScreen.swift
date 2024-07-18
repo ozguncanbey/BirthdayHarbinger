@@ -11,8 +11,11 @@ import SwiftData
 struct ListScreen: View {
     
     @Environment(\.modelContext) private var context
+    @Environment(\.colorScheme) private var colorScheme
+    
     @State private var editMode: EditMode = .inactive
     @State private var navigateToAddNewPersonScreen = false
+    @State private var navigateToSettings = false
     @State var category: Category = .All
     
     @Query private var people: [Personn]
@@ -49,8 +52,8 @@ struct ListScreen: View {
                         .font(.headline)
                         .padding(.vertical, .dHeight / 140)
                         .padding(.horizontal, .dWidth / 12)
-                        .background(Color(UIColor.black))
-                        .foregroundColor(.white)
+                        .background(colorScheme == .dark ? Color.white : Color.black)
+                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
                         .cornerRadius(20)
                 })
                 .padding(.horizontal)
@@ -59,11 +62,24 @@ struct ListScreen: View {
             .navigationTitle("navigationTitle")
             .padding(.top)
             .toolbar {
-                EditButton()
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        navigateToSettings = true
+                    }) {
+                        Image(systemName: "gearshape")
+                    }
+                }
             }
             .environment(\.editMode, $editMode)
             .sheet(isPresented: $navigateToAddNewPersonScreen) {
                 AddNewPersonScreen()
+            }
+            .sheet(isPresented: $navigateToSettings) {
+                SettingsScreen()
+                    .presentationDetents([.height(.dHeight / 2)])
             }
         }
         .onAppear {

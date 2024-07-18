@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "778EE3DF2C3E9B7D00FE70DD"
-               BuildableName = "BirthdayHarbinger.app"
+               BuildableName = "Birthday Harbinger.app"
                BlueprintName = "BirthdayHarbinger"
                ReferencedContainer = "container:BirthdayHarbinger.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "778EE3DF2C3E9B7D00FE70DD"
-            BuildableName = "BirthdayHarbinger.app"
+            BuildableName = "Birthday Harbinger.app"
             BlueprintName = "BirthdayHarbinger"
             ReferencedContainer = "container:BirthdayHarbinger.xcodeproj">
          </BuildableReference>
@@ -69,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "778EE3DF2C3E9B7D00FE70DD"
-            BuildableName = "BirthdayHarbinger.app"
+            BuildableName = "Birthday Harbinger.app"
             BlueprintName = "BirthdayHarbinger"
             ReferencedContainer = "container:BirthdayHarbinger.xcodeproj">
          </BuildableReference>

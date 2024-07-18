@@ -10,10 +10,13 @@ import SwiftData
 
 @main
 struct BirthdayHarbingerApp: App {
+    
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    
     var body: some Scene {
         WindowGroup {
             ListScreen()
-                .preferredColorScheme(.light)
+                .preferredColorScheme(isDarkMode ? .dark : .light)
                 .onAppear {
                     NotificationManager.shared.requestAuthorization()
                 }

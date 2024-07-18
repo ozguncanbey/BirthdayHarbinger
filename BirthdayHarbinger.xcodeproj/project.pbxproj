@@ -10,6 +10,8 @@
 		773089322C4407B000933E51 /* FilteredListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773089312C4407B000933E51 /* FilteredListView.swift */; };
 		775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */; };
 		7761E2632C46B3EB00D2FCD2 /* Personn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761E2622C46B3EB00D2FCD2 /* Personn.swift */; };
+		7774D59E2C4970E00041820D /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7774D59D2C4970E00041820D /* SettingsScreen.swift */; };
+		7774D5A02C4974B40041820D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7774D59F2C4974B40041820D /* Theme.swift */; };
 		778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */; };
 		778EE3E82C3E9B7E00FE70DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */; };
 		778EE3EB2C3E9B7E00FE70DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3EA2C3E9B7E00FE70DD /* Preview Assets.xcassets */; };
@@ -28,6 +30,8 @@
 		773089312C4407B000933E51 /* FilteredListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredListView.swift; sourceTree = "<group>"; };
 		775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryPicker.swift; sourceTree = "<group>"; };
 		7761E2622C46B3EB00D2FCD2 /* Personn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personn.swift; sourceTree = "<group>"; };
+		7774D59D2C4970E00041820D /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		7774D59F2C4974B40041820D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		778EE3E02C3E9B7D00FE70DD /* Birthday Harbinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Birthday Harbinger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayHarbingerApp.swift; sourceTree = "<group>"; };
 		778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 			children = (
 				7761E2622C46B3EB00D2FCD2 /* Personn.swift */,
 				778EE3FE2C3E9C6600FE70DD /* Category.swift */,
+				7774D59F2C4974B40041820D /* Theme.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			children = (
 				778EE4032C3E9CB500FE70DD /* ListScreen.swift */,
 				778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */,
+				7774D59D2C4970E00041820D /* SettingsScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -241,11 +247,13 @@
 				775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */,
 				778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */,
 				77EBA3D82C47F22D008C0E5C /* NotificationManager.swift in Sources */,
+				7774D59E2C4970E00041820D /* SettingsScreen.swift in Sources */,
 				77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */,
 				77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */,
 				7761E2632C46B3EB00D2FCD2 /* Personn.swift in Sources */,
 				77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */,
 				778EE3FF2C3E9C6600FE70DD /* Category.swift in Sources */,
+				7774D5A02C4974B40041820D /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

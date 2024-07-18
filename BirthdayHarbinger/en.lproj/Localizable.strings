@@ -23,7 +23,7 @@
 "Delete" = "Delete";
 "alertTitle" = "Delete Person";
 "Photo" = "Photo";
-"selectPhotoHip" = "Tap for select photo";
+"selectPhotoHip" = "Tap to select photo";
 "removePhotoButton" = "Remove Photo";
 "notificationTitle" = "'s Birthday 🎉";
 "notificationMessage" = "Don't forget to celebrate!";
