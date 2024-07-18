@@ -16,6 +16,7 @@ struct BirthdayHarbingerApp: App {
     var body: some Scene {
         WindowGroup {
             ListScreen()
+                .environment(\.locale, LocaleManager.shared.currentLanguage.locale)
                 .preferredColorScheme(isDarkMode ? .dark : .light)
                 .onAppear {
                     NotificationManager.shared.requestAuthorization()
