@@ -51,14 +51,14 @@ struct SettingsScreen: View {
                 }
                 
                 Section("Reminder") {
-                    Picker("First Alert", selection: $firstAlert) {
+                    Picker(NSLocalizedString("firstAlert", comment: ""), selection: $firstAlert) {
                         ForEach(Reminder.allCases, id: \.self) { reminder in
                             Text(reminder.localizedString).tag(reminder)
                         }
                     }
                     
                     HStack {
-                        DatePicker("Second Alert", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                        DatePicker(NSLocalizedString("secondAlert", comment: ""), selection: $selectedTime, displayedComponents: .hourAndMinute)
                             .datePickerStyle(.compact)
                             .environment(\.locale, Locale(identifier: "tr_POSIX"))
                         
