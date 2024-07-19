@@ -13,7 +13,12 @@ struct AddNewPersonScreen: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     
+    @AppStorage("notificationHour") private var hour: Int = 0
+    @AppStorage("notificationMinute") private var minute: Int = 0
+    
     private let notificationManager = NotificationManager.self
+    
+    @State private var selectedLanguage: String = Locale.current.language.languageCode?.identifier ?? "en"
     
     @State private var selectedImage: PhotosPickerItem? = nil
     @State private var selectedImageData: Data?
@@ -60,6 +65,7 @@ struct AddNewPersonScreen: View {
                         .datePickerStyle(.wheel)
                         .labelsHidden()
                         .frame(maxWidth: .infinity)
+                        .environment(\.locale, selectedLanguage == "tr" ? Locale(identifier: "tr_TR") : Locale(identifier: "en_TR"))
                 }
                 
                 Section() {
@@ -88,7 +94,7 @@ struct AddNewPersonScreen: View {
                         let person = Personn(name: name, birthday: date, category: category.rawValue)
                         person.imageData = selectedImageData
                         context.insert(person)
-                        notificationManager.shared.scheduleNotification(for: person)
+                        notificationManager.shared.scheduleNotification(for: person, hour: hour, minute: hour)
                         dismiss()
                     }
                     .disabled(isAddButtonDisable)

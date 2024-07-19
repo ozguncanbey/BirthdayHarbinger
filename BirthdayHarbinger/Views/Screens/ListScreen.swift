@@ -78,7 +78,7 @@ struct ListScreen: View {
                 AddNewPersonScreen()
             }
             .sheet(isPresented: $navigateToSettings) {
-                SettingsScreen()
+                SettingsScreen(people: people)
                     .presentationDetents([.height(.dHeight / 2)])
             }
         }

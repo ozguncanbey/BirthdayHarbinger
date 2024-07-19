@@ -10,7 +10,13 @@ import SwiftUI
 struct SettingsScreen: View {
     
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    @AppStorage("notificationHour") private var hour: Int = 0
+    @AppStorage("notificationMinute") private var minute: Int = 0
+    
     @State private var selectedLanguage: String = Locale.current.language.languageCode?.identifier ?? "en"
+    
+    var people: [Personn]
+    private let notificationManager = NotificationManager.shared
     
     @State private var firstAlert: Reminder = .none
     @State private var selectedTime: Date = {
@@ -20,6 +26,23 @@ struct SettingsScreen: View {
         return Calendar.current.date(from: components) ?? Date()
     }()
     @State private var showingPopover = false
+    
+    init(people: [Personn]) {
+        self.people = people
+        
+        let calendar = Calendar.current
+        let now = Date()
+        let components = calendar.dateComponents([.year, .month, .day], from: now)
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = components.year
+        dateComponents.month = components.month
+        dateComponents.day = components.day
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        
+        _selectedTime = State(initialValue: calendar.date(from: dateComponents) ?? now)
+    }
     
     var body: some View {
         NavigationStack {
@@ -61,6 +84,12 @@ struct SettingsScreen: View {
                         DatePicker(NSLocalizedString("secondAlert", comment: ""), selection: $selectedTime, displayedComponents: .hourAndMinute)
                             .datePickerStyle(.compact)
                             .environment(\.locale, Locale(identifier: "tr_POSIX"))
+                            .onChange(of: selectedTime) {
+                                let calendar = Calendar.current
+                                hour = calendar.component(.hour, from: selectedTime)
+                                minute = calendar.component(.minute, from: selectedTime)
+                                notificationManager.updateNotifications(for: people, hour: hour, minute: minute)
+                            }
                         
                         Button(action: {
                             showingPopover.toggle()
@@ -78,6 +107,6 @@ struct SettingsScreen: View {
     }
 }
 
-#Preview {
-    SettingsScreen()
-}
+//#Preview {
+//    SettingsScreen(people: [.dummy])
+//}

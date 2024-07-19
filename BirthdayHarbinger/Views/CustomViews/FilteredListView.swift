@@ -15,6 +15,8 @@ struct FilteredListView: View {
     var category: Category
     var people: [Personn]
     
+    private let notificationManager = NotificationManager.shared
+    
     @State private var showAlert = false
     @State private var personToDelete: Personn?
     
@@ -61,7 +63,7 @@ struct FilteredListView: View {
                                 primaryButton: .destructive(Text("Delete")) {
                                     if let personToDelete = personToDelete {
                                         context.delete(personToDelete)
-                                        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [personToDelete.id.uuidString])
+                                        notificationManager.removeNotifications(for: personToDelete)
                                     }
                                 },
                                 secondaryButton: .cancel()
