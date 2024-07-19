@@ -12,6 +12,15 @@ struct SettingsScreen: View {
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     @State private var selectedLanguage: String = Locale.current.language.languageCode?.identifier ?? "en"
     
+    @State private var firstAlert: Reminder = .none
+    @State private var selectedTime: Date = {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        components.hour = 0
+        components.minute = 0
+        return Calendar.current.date(from: components) ?? Date()
+    }()
+    @State private var showingPopover = false
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -40,9 +49,31 @@ struct SettingsScreen: View {
                         }
                     }
                 }
+                
+                Section("Reminder") {
+                    Picker("First Alert", selection: $firstAlert) {
+                        ForEach(Reminder.allCases, id: \.self) { reminder in
+                            Text(reminder.localizedString).tag(reminder)
+                        }
+                    }
+                    
+                    HStack {
+                        DatePicker("Second Alert", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                            .datePickerStyle(.compact)
+                            .environment(\.locale, Locale(identifier: "tr_POSIX"))
+                        
+                        Button(action: {
+                            showingPopover.toggle()
+                        }) {
+                            Image(systemName: "info.circle")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
             }
             .navigationTitle("Settings")
             .preferredColorScheme(isDarkMode ? .dark : .light)
+            .animation(.easeInOut, value: showingPopover)
         }
     }
 }

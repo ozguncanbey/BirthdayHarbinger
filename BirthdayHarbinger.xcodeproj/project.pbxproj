@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		773089322C4407B000933E51 /* FilteredListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773089312C4407B000933E51 /* FilteredListView.swift */; };
+		7753558F2C4A96A8004EDD80 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753558E2C4A96A8004EDD80 /* Reminder.swift */; };
 		775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */; };
 		7761E2632C46B3EB00D2FCD2 /* Personn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761E2622C46B3EB00D2FCD2 /* Personn.swift */; };
 		7774D59E2C4970E00041820D /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7774D59D2C4970E00041820D /* SettingsScreen.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		773089312C4407B000933E51 /* FilteredListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredListView.swift; sourceTree = "<group>"; };
+		7753558E2C4A96A8004EDD80 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryPicker.swift; sourceTree = "<group>"; };
 		7761E2622C46B3EB00D2FCD2 /* Personn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personn.swift; sourceTree = "<group>"; };
 		7774D59D2C4970E00041820D /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				7761E2622C46B3EB00D2FCD2 /* Personn.swift */,
 				778EE3FE2C3E9C6600FE70DD /* Category.swift */,
 				7774D59F2C4974B40041820D /* Theme.swift */,
+				7753558E2C4A96A8004EDD80 /* Reminder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */,
 				778EE3FF2C3E9C6600FE70DD /* Category.swift in Sources */,
 				7774D5A02C4974B40041820D /* Theme.swift in Sources */,
+				7753558F2C4A96A8004EDD80 /* Reminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
