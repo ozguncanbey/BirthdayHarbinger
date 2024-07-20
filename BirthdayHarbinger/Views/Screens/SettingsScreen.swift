@@ -155,7 +155,7 @@ struct SettingsScreen: View {
                 Text("toastMessage")
                     .foregroundColor(.primary)
                     .padding(10)
-                    .background(isDarkMode ? Color.gray.opacity(0.2) : Color.white.opacity(0.8))
+                    .background(isDarkMode ? Color.gray.opacity(0.2) : Color.white)
                     .cornerRadius(12)
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal, 16)
