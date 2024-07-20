@@ -23,7 +23,7 @@ struct SettingsScreen: View {
     var people: [Personn]
     private let notificationManager = NotificationManager.shared
     
-//    @State private var firstAlert: Reminder = .none
+    //    @State private var firstAlert: Reminder = .none
     
     @State private var faSelectedTime: Date = {
         var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
@@ -64,87 +64,103 @@ struct SettingsScreen: View {
     }
     
     var body: some View {
-        NavigationStack {
-            Form {
-                Section("Theme") {
-                    Toggle(isOn: $isDarkMode, label: {
-                        Text("Dark Mode")
-                    })
-                }
-                
-                Section("Language") {
-                    HStack {
-                        Text("Language")
-                        Spacer()
-                        Picker("Language", selection: $selectedLanguage) {
-                            Text("en").tag("en")
-                            Text("tr").tag("tr")
-                        }
-                        .pickerStyle(.segmented)
-                        .frame(width: .dWidth / 4, alignment: .trailing)
-                        .onChange(of: selectedLanguage) {
-                            if selectedLanguage == "tr" {
-                                LocaleManager.shared.setLanguage(.turkish)
-                            } else {
-                                LocaleManager.shared.setLanguage(.english)
-                            }
-                        }
+        ZStack(alignment: .bottom) {
+            NavigationStack {
+                Form {
+                    Section("Theme") {
+                        Toggle(isOn: $isDarkMode, label: {
+                            Text("Dark Mode")
+                        })
                     }
-                }
-                
-                Section("Reminder") {
-                    HStack {
-                        Text(NSLocalizedString("firstAlert", comment: ""))
-                        
-                        Spacer()
-                        
-                        Picker("", selection: $reminder) {
-                            ForEach(Reminder.allCases, id: \.self) { reminder in
-                                Text(reminder.localizedString).tag(reminder)
+                    
+                    Section("Language") {
+                        HStack {
+                            Text("Language")
+                            Spacer()
+                            Picker("Language", selection: $selectedLanguage) {
+                                Text("en").tag("en")
+                                Text("tr").tag("tr")
                             }
-                        }
-                        .onChange(of: reminder) {
-                            notificationManager.updateFirstAlertNotifications(for: people, reminder: reminder, hour: faHour, minute: faMinute)
-                        }
-                        
-                        if reminder.rawValue != "None" {
-                            DatePicker("", selection: $faSelectedTime, displayedComponents: .hourAndMinute)
-                                .datePickerStyle(.compact)
-                                .environment(\.locale, Locale(identifier: "tr_POSIX"))
-                                .onChange(of: faSelectedTime) {
-                                    let calendar = Calendar.current
-                                    faHour = calendar.component(.hour, from: faSelectedTime)
-                                    faMinute = calendar.component(.minute, from: faSelectedTime)
-                                    notificationManager.updateFirstAlertNotifications(for: people, reminder: reminder, hour: faHour, minute: faMinute)
+                            .pickerStyle(.segmented)
+                            .frame(width: .dWidth / 4, alignment: .trailing)
+                            .onChange(of: selectedLanguage) {
+                                if selectedLanguage == "tr" {
+                                    LocaleManager.shared.setLanguage(.turkish)
+                                } else {
+                                    LocaleManager.shared.setLanguage(.english)
                                 }
+                            }
                         }
                     }
                     
-                    HStack {
-                        DatePicker(NSLocalizedString("secondAlert", comment: ""), selection: $saSelectedTime, displayedComponents: .hourAndMinute)
-                            .datePickerStyle(.compact)
-                            .environment(\.locale, Locale(identifier: "tr_POSIX"))
-                            .onChange(of: saSelectedTime) {
-                                let calendar = Calendar.current
-                                saHour = calendar.component(.hour, from: saSelectedTime)
-                                saMinute = calendar.component(.minute, from: saSelectedTime)
-                                notificationManager.updateSecondAlertNotifications(for: people, hour: saHour, minute: saMinute)
+                    Section("Reminder") {
+                        HStack {
+                            Text(NSLocalizedString("firstAlert", comment: ""))
+                            
+                            Spacer()
+                            
+                            Picker("", selection: $reminder) {
+                                ForEach(Reminder.allCases, id: \.self) { reminder in
+                                    Text(reminder.localizedString).tag(reminder)
+                                }
                             }
+                            .onChange(of: reminder) {
+                                notificationManager.updateFirstAlertNotifications(for: people, reminder: reminder, hour: faHour, minute: faMinute)
+                            }
+                            
+                            if reminder.rawValue != "None" {
+                                DatePicker("", selection: $faSelectedTime, displayedComponents: .hourAndMinute)
+                                    .datePickerStyle(.compact)
+                                    .environment(\.locale, Locale(identifier: "tr_POSIX"))
+                                    .onChange(of: faSelectedTime) {
+                                        let calendar = Calendar.current
+                                        faHour = calendar.component(.hour, from: faSelectedTime)
+                                        faMinute = calendar.component(.minute, from: faSelectedTime)
+                                        notificationManager.updateFirstAlertNotifications(for: people, reminder: reminder, hour: faHour, minute: faMinute)
+                                    }
+                            }
+                        }
                         
-                        Button(action: {
-                            showingToast.toggle()
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                showingToast = false
+                        HStack {
+                            DatePicker(NSLocalizedString("secondAlert", comment: ""), selection: $saSelectedTime, displayedComponents: .hourAndMinute)
+                                .datePickerStyle(.compact)
+                                .environment(\.locale, Locale(identifier: "tr_POSIX"))
+                                .onChange(of: saSelectedTime) {
+                                    let calendar = Calendar.current
+                                    saHour = calendar.component(.hour, from: saSelectedTime)
+                                    saMinute = calendar.component(.minute, from: saSelectedTime)
+                                    notificationManager.updateSecondAlertNotifications(for: people, hour: saHour, minute: saMinute)
+                                }
+                            
+                            Button(action: {
+                                withAnimation(.easeInOut) {
+                                    showingToast.toggle()
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                    showingToast = false
+                                }
+                            }) {
+                                Image(systemName: "info.circle")
+                                    .foregroundColor(.blue)
                             }
-                        }) {
-                            Image(systemName: "info.circle")
-                                .foregroundColor(.blue)
                         }
                     }
                 }
+                .navigationTitle("Settings")
+                .preferredColorScheme(isDarkMode ? .dark : .light)
             }
-            .navigationTitle("Settings")
-            .preferredColorScheme(isDarkMode ? .dark : .light)
+            
+            Spacer()
+            if showingToast {
+                Text("toastMessage")
+                    .foregroundColor(.primary)
+                    .padding(10)
+                    .background(isDarkMode ? Color.gray.opacity(0.2) : Color.white.opacity(0.8))
+                    .cornerRadius(12)
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 16)
+                    .transition(.move(edge: .bottom))
+            }
         }
     }
 }
