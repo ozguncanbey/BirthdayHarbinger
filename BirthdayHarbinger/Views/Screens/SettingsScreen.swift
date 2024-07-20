@@ -39,7 +39,7 @@ struct SettingsScreen: View {
         return Calendar.current.date(from: components) ?? Date()
     }()
     
-    @State private var showingPopover = false
+    @State private var showingToast = false
     
     init(people: [Personn]) {
         self.people = people
@@ -132,7 +132,10 @@ struct SettingsScreen: View {
                             }
                         
                         Button(action: {
-                            showingPopover.toggle()
+                            showingToast.toggle()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                showingToast = false
+                            }
                         }) {
                             Image(systemName: "info.circle")
                                 .foregroundColor(.blue)
@@ -142,7 +145,6 @@ struct SettingsScreen: View {
             }
             .navigationTitle("Settings")
             .preferredColorScheme(isDarkMode ? .dark : .light)
-            .animation(.easeInOut, value: showingPopover)
         }
     }
 }

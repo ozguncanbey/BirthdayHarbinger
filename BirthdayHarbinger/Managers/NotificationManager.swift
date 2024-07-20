@@ -95,8 +95,9 @@ final class NotificationManager {
     }
     
     func removeNotifications(for person: Personn) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["firstAlert-" + person.id.uuidString])
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["secondAlert-" + person.id.uuidString])
+        let firstAlertIdentifier = "firstAlert-" + person.id.uuidString
+        let secondAlertIdentifier = "secondAlert-" + person.id.uuidString
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [firstAlertIdentifier, secondAlertIdentifier])
     }
     
     func updateFirstAlertNotifications(for people: [Personn], reminder: Reminder, hour: Int, minute: Int) {
