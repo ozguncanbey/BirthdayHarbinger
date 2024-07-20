@@ -13,6 +13,10 @@ struct AddNewPersonScreen: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     
+    @AppStorage("reminder") private var reminder: Reminder = .none
+    @AppStorage("firstAlertHour") private var faHour: Int = 0
+    @AppStorage("firstAlertMinute") private var faMinute: Int = 0
+    
     @AppStorage("secondAlertHour") private var saHour: Int = 0
     @AppStorage("secondAlertMinute") private var saMinute: Int = 0
     
@@ -94,7 +98,8 @@ struct AddNewPersonScreen: View {
                         let person = Personn(name: name, birthday: date, category: category.rawValue)
                         person.imageData = selectedImageData
                         context.insert(person)
-                        notificationManager.shared.scheduleNotification(for: person, hour: saHour, minute: saHour)
+                        notificationManager.shared.scheduleFirstAlertNotification(for: person, reminder: reminder, hour: faHour, minute: faMinute)
+                        notificationManager.shared.scheduleSecondAlertNotification(for: person, hour: saHour, minute: saHour)
                         dismiss()
                     }
                     .disabled(isAddButtonDisable)

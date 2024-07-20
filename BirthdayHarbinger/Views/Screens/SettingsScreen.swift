@@ -11,6 +11,7 @@ struct SettingsScreen: View {
     
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     
+    @AppStorage("reminder") private var reminder: Reminder = .none
     @AppStorage("firstAlertHour") private var faHour: Int = 0
     @AppStorage("firstAlertMinute") private var faMinute: Int = 0
     
@@ -22,7 +23,7 @@ struct SettingsScreen: View {
     var people: [Personn]
     private let notificationManager = NotificationManager.shared
     
-    @State private var firstAlert: Reminder = .none
+//    @State private var firstAlert: Reminder = .none
     
     @State private var faSelectedTime: Date = {
         var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
@@ -97,13 +98,16 @@ struct SettingsScreen: View {
                         
                         Spacer()
                         
-                        Picker("", selection: $firstAlert) {
+                        Picker("", selection: $reminder) {
                             ForEach(Reminder.allCases, id: \.self) { reminder in
                                 Text(reminder.localizedString).tag(reminder)
                             }
                         }
+                        .onChange(of: reminder) {
+                            notificationManager.updateFirstAlertNotifications(for: people, reminder: reminder, hour: faHour, minute: faMinute)
+                        }
                         
-                        if firstAlert.rawValue != "None" {
+                        if reminder.rawValue != "None" {
                             DatePicker("", selection: $faSelectedTime, displayedComponents: .hourAndMinute)
                                 .datePickerStyle(.compact)
                                 .environment(\.locale, Locale(identifier: "tr_POSIX"))
@@ -111,6 +115,7 @@ struct SettingsScreen: View {
                                     let calendar = Calendar.current
                                     faHour = calendar.component(.hour, from: faSelectedTime)
                                     faMinute = calendar.component(.minute, from: faSelectedTime)
+                                    notificationManager.updateFirstAlertNotifications(for: people, reminder: reminder, hour: faHour, minute: faMinute)
                                 }
                         }
                     }
@@ -123,7 +128,7 @@ struct SettingsScreen: View {
                                 let calendar = Calendar.current
                                 saHour = calendar.component(.hour, from: saSelectedTime)
                                 saMinute = calendar.component(.minute, from: saSelectedTime)
-                                notificationManager.updateNotifications(for: people, hour: saHour, minute: saMinute)
+                                notificationManager.updateSecondAlertNotifications(for: people, hour: saHour, minute: saMinute)
                             }
                         
                         Button(action: {
