@@ -1,15 +1,7 @@
-//
-//  FilteredListView.swift
-//  BirthdayHarbinger
-//
-//  Created by Özgün Can Beydili on 14.07.2024.
-//
-
 import SwiftUI
 import SwiftData
 
 struct FilteredListView: View {
-    
     @Environment(\.modelContext) private var context
     @Binding var editMode: EditMode
     var category: Category
@@ -32,11 +24,17 @@ struct FilteredListView: View {
         let filtered = category == .All ? people : people.filter { $0.category == category.rawValue }
         
         return filtered.sorted { person1, person2 in
-            guard let leftDays1 = person1.calculateLeftDays(), let leftDays2 = person2.calculateLeftDays(),
-                  let days1 = Int(leftDays1), let days2 = Int(leftDays2) else {
+            if person1.isPinned && !person2.isPinned {
+                return true
+            } else if !person1.isPinned && person2.isPinned {
                 return false
+            } else {
+                guard let leftDays1 = person1.calculateLeftDays(), let leftDays2 = person2.calculateLeftDays(),
+                      let days1 = Int(leftDays1), let days2 = Int(leftDays2) else {
+                    return false
+                }
+                return days1 < days2
             }
-            return days1 < days2
         }
     }
     
@@ -48,7 +46,13 @@ struct FilteredListView: View {
                     if editMode == .active {
                         Spacer()
                         Button(action: {
-//                            context.delete(person)
+                            person.isPinned.toggle()
+                            try? context.save()
+                        }) {
+                            Image(systemName: person.isPinned ? "pin.fill" : "pin")
+                                .foregroundColor(.blue)
+                        }
+                        Button(action: {
                             personToDelete = person
                             showAlert = true
                         }) {

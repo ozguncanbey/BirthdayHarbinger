@@ -15,6 +15,7 @@ final class Personn: Identifiable {
     var name: String
     var birthday: Date
     var category: String
+    var isPinned: Bool = false
     
     init(name: String, birthday: Date, category: String) {
         self.name = name
