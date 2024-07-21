@@ -14,7 +14,7 @@ struct FilteredListView: View {
     
     private var alertMessage: String {
         if Locale.current.isTurkish {
-            return "\(personToDelete?.name ?? "bu kişiyi") silmek istediğinizden emin misiniz?"
+            return "\(personToDelete?.name ?? "bu kişiyi")'i silmek istediğinizden emin misiniz?"
         } else {
             return "Are you sure you want to delete \(personToDelete?.name ?? "this person")?"
         }
