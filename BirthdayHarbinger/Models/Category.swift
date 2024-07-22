@@ -8,13 +8,13 @@
 import Foundation
 
 enum Category: String, CaseIterable {
-    case All
-    case Family
-    case Friend
-    case Other
+    case All = "All"
+    case Family = "Family"
+    case Friend = "Friend"
+    case Other = "Other"
     
-    var localizedString: String {
-        NSLocalizedString(self.rawValue, comment: "")
+    func localizedString(language: Language) -> String {
+        NSLocalizedString(self.rawValue.localized(language), comment: "")
     }
 }
 

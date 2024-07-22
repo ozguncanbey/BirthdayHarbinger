@@ -7,6 +7,8 @@ struct FilteredListView: View {
     var category: Category
     var people: [Personn]
     
+    @AppStorage("language") private var language = LocaleManager.shared.language
+    
     private let notificationManager = NotificationManager.shared
     
     @State private var showAlert = false
@@ -62,9 +64,9 @@ struct FilteredListView: View {
                         .buttonStyle(BorderlessButtonStyle())
                         .alert(isPresented: $showAlert) {
                             Alert(
-                                title: Text("alertTitle"),
+                                title: Text("alertTitle".localized(language)),
                                 message: Text(alertMessage),
-                                primaryButton: .destructive(Text("Delete")) {
+                                primaryButton: .destructive(Text("Delete".localized(language))) {
                                     if let personToDelete = personToDelete {
                                         context.delete(personToDelete)
                                         notificationManager.removeNotifications(for: personToDelete)
@@ -82,7 +84,7 @@ struct FilteredListView: View {
         .listStyle(.plain)
         .overlay {
             if filteredPeople.isEmpty {
-                ContentUnavailableView("There is nobody", systemImage: "person.slash.fill", description: Text("Add someone to see"))
+                ContentUnavailableView("There is nobody".localized(language), systemImage: "person.slash.fill", description: Text("Add someone to see".localized(language)))
                     .offset(y: -60)
             }
         }

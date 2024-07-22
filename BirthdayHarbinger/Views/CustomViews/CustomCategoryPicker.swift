@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct CustomCategoryPicker: View {
+    
     @Binding var selectedCategory: Category
+    var language: Language
     
     var body: some View {
         HStack {
@@ -17,7 +19,7 @@ struct CustomCategoryPicker: View {
                     selectedCategory = category
                 }) {
                     VStack {
-                        Text(category.localizedString)
+                        Text(category.localizedString(language: language))
                             .foregroundColor(selectedCategory == category ? .blue : .secondary)
                         if selectedCategory == category {
                             Rectangle()

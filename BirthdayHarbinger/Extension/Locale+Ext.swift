@@ -9,6 +9,6 @@ import Foundation
 
 extension Locale {
     var isTurkish: Bool {
-        return self.language.languageCode?.identifier == "tr"
+        return LocaleManager.shared.language.rawValue == "tr"
     }
 }

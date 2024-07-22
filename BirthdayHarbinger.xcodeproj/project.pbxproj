@@ -21,6 +21,8 @@
 		778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4002C3E9CA600FE70DD /* ListCell.swift */; };
 		778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */; };
 		778EE4052C3E9CB500FE70DD /* ListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4032C3E9CB500FE70DD /* ListScreen.swift */; };
+		77CBCB912C4E843600BFE42B /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CBCB902C4E843600BFE42B /* String+Ext.swift */; };
+		77CBCB932C4EB5CF00BFE42B /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CBCB922C4EB5CF00BFE42B /* Date+Ext.swift */; };
 		77CCCF7E2C4557FB009EA9DC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77CCCF7C2C4557FB009EA9DC /* Localizable.strings */; };
 		77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF802C45642E009EA9DC /* Locale+Ext.swift */; };
 		77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */; };
@@ -44,6 +46,8 @@
 		778EE4002C3E9CA600FE70DD /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewPersonScreen.swift; sourceTree = "<group>"; };
 		778EE4032C3E9CB500FE70DD /* ListScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListScreen.swift; sourceTree = "<group>"; };
+		77CBCB902C4E843600BFE42B /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		77CBCB922C4EB5CF00BFE42B /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		77CCCF7D2C4557FB009EA9DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77CCCF7F2C455820009EA9DC /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77CCCF802C45642E009EA9DC /* Locale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+Ext.swift"; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 			children = (
 				77CCCF802C45642E009EA9DC /* Locale+Ext.swift */,
 				77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */,
+				77CBCB902C4E843600BFE42B /* String+Ext.swift */,
+				77CBCB922C4EB5CF00BFE42B /* Date+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -249,11 +255,13 @@
 				778EE4052C3E9CB500FE70DD /* ListScreen.swift in Sources */,
 				773089322C4407B000933E51 /* FilteredListView.swift in Sources */,
 				778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */,
+				77CBCB912C4E843600BFE42B /* String+Ext.swift in Sources */,
 				778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */,
 				775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */,
 				778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */,
 				7774D5A22C4982700041820D /* LocaleManager.swift in Sources */,
 				77EBA3D82C47F22D008C0E5C /* NotificationManager.swift in Sources */,
+				77CBCB932C4EB5CF00BFE42B /* Date+Ext.swift in Sources */,
 				7774D59E2C4970E00041820D /* SettingsScreen.swift in Sources */,
 				77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */,
 				77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */,

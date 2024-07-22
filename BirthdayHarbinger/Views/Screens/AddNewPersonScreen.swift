@@ -13,6 +13,8 @@ struct AddNewPersonScreen: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     
+    @AppStorage("language") private var language = LocaleManager.shared.language
+    
     @AppStorage("reminder") private var reminder: Reminder = .none
     @AppStorage("firstAlertHour") private var faHour: Int = 0
     @AppStorage("firstAlertMinute") private var faMinute: Int = 0
@@ -21,8 +23,6 @@ struct AddNewPersonScreen: View {
     @AppStorage("secondAlertMinute") private var saMinute: Int = 0
     
     private let notificationManager = NotificationManager.self
-    
-    @State private var selectedLanguage: String = Locale.current.language.languageCode?.identifier ?? "en"
     
     @State private var selectedImage: PhotosPickerItem? = nil
     @State private var selectedImageData: Data?
@@ -40,8 +40,8 @@ struct AddNewPersonScreen: View {
     var body: some View {
         NavigationStack {
             List {
-                Section("Photo") {
-                    Text("selectPhotoHip")
+                Section("Photo".localized(language)) {
+                    Text("selectPhotoHip".localized(language))
                         .font(.system(.footnote))
                         .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity)
@@ -50,7 +50,7 @@ struct AddNewPersonScreen: View {
                         .frame(maxWidth: .infinity)
                     
                     if selectedImageData != nil {
-                        Button("removePhotoButton") {
+                        Button("removePhotoButton".localized(language)) {
                             selectedImage = nil
                             selectedImageData = nil
                         }
@@ -60,41 +60,41 @@ struct AddNewPersonScreen: View {
                 }
                 .listRowSeparator(.hidden)
                 
-                Section("Name") {
-                    TextField("Name", text: $name)
+                Section("Name".localized(language)) {
+                    TextField("Name".localized(language), text: $name)
                 }
                 
-                Section("Birth Date") {
-                    DatePicker("Birth Date", selection: $date, in: startDate...endDate, displayedComponents: [.date])
+                Section("Birth Date".localized(language)) {
+                    DatePicker("Birth Date".localized(language), selection: $date, in: startDate...endDate, displayedComponents: [.date])
                         .datePickerStyle(.wheel)
                         .labelsHidden()
                         .frame(maxWidth: .infinity)
-                        .environment(\.locale, selectedLanguage == "tr" ? Locale(identifier: "tr_TR") : Locale(identifier: "en_TR"))
+                        .environment(\.locale, language.rawValue == "tr" ? Locale(identifier: "tr_TR") : Locale(identifier: "en_TR"))
                 }
                 
                 Section() {
                     HStack {
-                        Picker("Category", selection: $category){
+                        Picker("Category".localized(language), selection: $category){
                             ForEach(Category.selectableCategories, id: \.self) {
-                                Text($0.localizedString)
+                                Text($0.localizedString(language: language))
                             }
                         }
                         .pickerStyle(.menu)
                     }
                 }
             }
-            .navigationTitle("addNewPersonTitle")
+            .navigationTitle("addNewPersonTitle".localized(language))
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button("Cancel".localized(language)) {
                         dismiss()
                     }
                     .tint(.red)
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Add") {
+                    Button("Add".localized(language)) {
                         let person = Personn(name: name, birthday: date, category: category.rawValue)
                         person.imageData = selectedImageData
                         context.insert(person)

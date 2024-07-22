@@ -6,13 +6,15 @@ struct ListScreen: View {
     @Environment(\.modelContext) private var context
     @Environment(\.colorScheme) private var colorScheme
     
+    @AppStorage("language") private var language = LocaleManager.shared.language
+    
     @State private var editMode: EditMode = .inactive
     @State private var navigateToAddNewPersonScreen = false
     @State private var navigateToSettings = false
     @State var category: Category = .All
     
     @Query private var people: [Personn]
-
+    
     private var filteredPeople: [Personn] {
         let filtered = category == .All ? people : people.filter { $0.category == category.rawValue }
         
@@ -34,7 +36,7 @@ struct ListScreen: View {
     var body: some View {
         NavigationStack {
             VStack {
-                CustomCategoryPicker(selectedCategory: $category)
+                CustomCategoryPicker(selectedCategory: $category, language: language)
                     .padding(.horizontal)
                 
                 TabView(selection: $category) {
@@ -47,7 +49,7 @@ struct ListScreen: View {
                 Button(action: {
                     navigateToAddNewPersonScreen = true
                 }, label: {
-                    Text("Add person")
+                    Text("Add person".localized(language))
                         .font(.headline)
                         .padding(.vertical, .dHeight / 140)
                         .padding(.horizontal, .dWidth / 12)
@@ -58,11 +60,17 @@ struct ListScreen: View {
                 .padding(.horizontal)
                 .padding(.bottom, 10)
             }
-            .navigationTitle("navigationTitle")
+            .navigationTitle("navigationTitle".localized(language))
             .padding(.top)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+                    Button(action: {
+                        withAnimation {
+                            editMode = editMode == .active ? .inactive : .active
+                        }
+                    }) {
+                        Text(editMode == .active ? "Done".localized(language) : "Edit".localized(language))
+                    }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {

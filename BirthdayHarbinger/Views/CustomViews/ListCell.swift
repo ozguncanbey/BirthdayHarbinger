@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ListCell: View {
+    
+    @AppStorage("language") private var language = LocaleManager.shared.language
+    
     let person: Personn
     var isBirthdayToday: Bool
     
@@ -38,11 +41,11 @@ struct ListCell: View {
                     .font(.system(size: 14, weight: .bold))
                 
                 HStack {
-                    Text(person.birthday, format: Date.FormatStyle().day().month().year())
+                    Text(person.birthday.formatted(using: language))
                         .font(.system(size: 12, weight: .medium))
                     
                     if isBirthdayToday {
-                        Text("birthdayMessage")
+                        Text("birthdayMessage".localized(language))
                             .font(.system(size: 12, weight: .medium))
                             .padding(10)
                     } else {
@@ -71,7 +74,7 @@ struct ListCell: View {
                     Text(person.calculateLeftDays() ?? "0")
                         .font(.system(size: 14, weight: .bold))
                     
-                    Text(person.calculateLeftDays() == "1" ? "Day" : "Days")
+                    Text(person.calculateLeftDays() == "1" ? "Day".localized(language) : "Days".localized(language))
                         .font(.system(size: 14, weight: .medium))
                         .padding(10)
                 }

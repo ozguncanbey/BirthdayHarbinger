@@ -1,15 +1,9 @@
-//
-//  LocaleManager.swift
-//  BirthdayHarbinger
-//
-//  Created by Özgün Can Beydili on 18.07.2024.
-//
-
+import Foundation
 import SwiftUI
 
-enum AppLanguage {
-    case english
-    case turkish
+enum Language: String {
+    case english = "en"
+    case turkish = "tr"
     
     var locale: Locale {
         switch self {
@@ -21,31 +15,30 @@ enum AppLanguage {
     }
 }
 
-
 final class LocaleManager {
     
     static let shared = LocaleManager()
+    static let changedLanguage = Notification.Name("changedLanguage")
+    
     private init() {}
     
-    @AppStorage("selectedLanguage") private var selectedLanguage: String = "en"
-    
-    var currentLanguage: AppLanguage {
+    var language: Language {
         get {
-            return selectedLanguage == "tr" ? .turkish : .english
-        }
-        set {
-            switch newValue {
-            case .english:
-                selectedLanguage = "en"
-            case .turkish:
-                selectedLanguage = "tr"
+            if let languageString = UserDefaults.standard.string(forKey: "language"),
+               let savedLanguage = Language(rawValue: languageString) {
+                return savedLanguage
+            } else if let deviceLanguageCode = Locale.current.language.languageCode?.identifier,
+                      let deviceLanguage = Language(rawValue: deviceLanguageCode) {
+                return deviceLanguage
+            } else {
+                return .english
             }
         }
-    }
-    
-    func setLanguage(_ language: AppLanguage) {
-        currentLanguage = language
-        UserDefaults.standard.set([selectedLanguage], forKey: "AppleLanguages")
-        UserDefaults.standard.synchronize()
+        set {
+            if newValue != language {
+                UserDefaults.standard.setValue(newValue.rawValue, forKey: "language")
+                NotificationCenter.default.post(name: LocaleManager.changedLanguage, object: nil)
+            }
+        }
     }
 }
