@@ -14,7 +14,7 @@ enum Category: String, CaseIterable {
     case Other = "Other"
     
     func localizedString(language: Language) -> String {
-        NSLocalizedString(self.rawValue.localized(language), comment: "")
+        self.rawValue.localized(language)
     }
 }
 

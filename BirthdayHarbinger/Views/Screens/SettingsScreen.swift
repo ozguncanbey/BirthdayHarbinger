@@ -101,7 +101,7 @@ struct SettingsScreen: View {
                             
                             Picker("", selection: $reminder) {
                                 ForEach(Reminder.allCases, id: \.self) { reminder in
-                                    Text(reminder.localizedString(for: language)).tag(reminder)
+                                    Text(reminder.localizedString(language: language)).tag(reminder)
                                 }
                             }
                             .onChange(of: reminder) {

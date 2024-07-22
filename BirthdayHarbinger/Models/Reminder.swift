@@ -17,7 +17,7 @@ enum Reminder: String, CaseIterable {
     case six = "6 days before"
     case week = "1 week before"
     
-    func localizedString(for language: Language) -> String {
-        NSLocalizedString(self.rawValue.localized(language), comment: "")
+    func localizedString(language: Language) -> String {
+        self.rawValue.localized(language)
     }
 }
