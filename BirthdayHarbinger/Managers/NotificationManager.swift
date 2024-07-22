@@ -10,6 +10,8 @@ import UserNotifications
 
 final class NotificationManager {
     
+    @AppStorage("language") private var language = LocaleManager.shared.language
+    
     static let shared = NotificationManager()
     
     private init() {}
@@ -24,8 +26,8 @@ final class NotificationManager {
         
         if reminder != .none {
             let content = UNMutableNotificationContent()
-            content.title = "\(person.name)" + NSLocalizedString("faNotTitle", comment: "")
-            content.body = NSLocalizedString("faNotMessage", comment: "")
+            content.title = "\(person.name)" + "faNotTitle".localized(language)
+            content.body = "faNotMessage".localized(language)
             content.sound = .default
             
             let calendar = Calendar.current
@@ -74,8 +76,8 @@ final class NotificationManager {
         let secondAlertIdentifier = "secondAlert-" + person.id.uuidString
         
         let content = UNMutableNotificationContent()
-        content.title = NSLocalizedString("today", comment: "") + "\(person.name)" + NSLocalizedString("notificationTitle", comment: "")
-        content.body = NSLocalizedString("notificationMessage", comment: "")
+        content.title = "today".localized(language) + "\(person.name)" + "notificationTitle".localized(language)
+        content.body = "notificationMessage".localized(language)
         content.sound = .default
         content.badge = 1
         
