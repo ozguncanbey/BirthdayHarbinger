@@ -11,6 +11,7 @@ struct ListScreen: View {
     @State private var editMode: EditMode = .inactive
     @State private var navigateToAddNewPersonScreen = false
     @State private var navigateToSettings = false
+    @State private var showCelebration = false
     @State var category: Category = .All
     
     @Query private var people: [Personn]
@@ -35,62 +36,85 @@ struct ListScreen: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                CustomCategoryPicker(selectedCategory: $category, language: language)
-                    .padding(.horizontal)
-                
-                TabView(selection: $category) {
-                    ForEach(Category.allCases, id: \.self) { category in
-                        FilteredListView(editMode: $editMode, category: category, people: people)
-                    }
-                }
-                .tabViewStyle(.page(indexDisplayMode: .always))
-                
-                Button(action: {
-                    navigateToAddNewPersonScreen = true
-                }, label: {
-                    Text("Add person".localized(language))
-                        .font(.headline)
-                        .padding(.vertical, .dHeight / 140)
-                        .padding(.horizontal, .dWidth / 12)
-                        .background(colorScheme == .dark ? Color.white : Color.black)
-                        .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
-                        .cornerRadius(20)
-                })
-                .padding(.horizontal)
-                .padding(.bottom, 10)
-            }
-            .navigationTitle("navigationTitle".localized(language))
-            .padding(.top)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        withAnimation {
-                            editMode = editMode == .active ? .inactive : .active
+            ZStack {
+                VStack {
+                    CustomCategoryPicker(selectedCategory: $category, language: language)
+                        .padding(.horizontal)
+                    
+                    TabView(selection: $category) {
+                        ForEach(Category.allCases, id: \.self) { category in
+                            FilteredListView(editMode: $editMode, category: category, people: people)
                         }
-                    }) {
-                        Text(editMode == .active ? "Done".localized(language) : "Edit".localized(language))
                     }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
+                    .tabViewStyle(.page(indexDisplayMode: .always))
+                    
                     Button(action: {
-                        navigateToSettings = true
-                    }) {
-                        Image(systemName: "gearshape")
+                        navigateToAddNewPersonScreen = true
+                    }, label: {
+                        Text("Add person".localized(language))
+                            .font(.headline)
+                            .padding(.vertical, .dHeight / 140)
+                            .padding(.horizontal, .dWidth / 12)
+                            .background(colorScheme == .dark ? Color.white : Color.black)
+                            .foregroundColor(colorScheme == .dark ? Color.black : Color.white)
+                            .cornerRadius(20)
+                    })
+                    .padding(.horizontal)
+                    .padding(.bottom, 10)
+                }
+                .navigationTitle("navigationTitle".localized(language))
+                .padding(.top)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                            .environment(\.locale, LocaleManager.shared.language.locale)
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            navigateToSettings = true
+                        }) {
+                            Image(systemName: "gearshape")
+                        }
                     }
                 }
-            }
-            .environment(\.editMode, $editMode)
-            .sheet(isPresented: $navigateToAddNewPersonScreen) {
-                AddNewPersonScreen()
-            }
-            .sheet(isPresented: $navigateToSettings) {
-                SettingsScreen(people: people)
-                    .presentationDetents([.height(.dHeight / 2)])
+                .environment(\.editMode, $editMode)
+                .sheet(isPresented: $navigateToAddNewPersonScreen) {
+                    AddNewPersonScreen()
+                }
+                .sheet(isPresented: $navigateToSettings) {
+                    SettingsScreen(people: people)
+                        .presentationDetents([.height(.dHeight / 2)])
+                }
+                
+                if showCelebration {
+                    CelebrationView()
+                        .transition(.opacity)
+                        .zIndex(1)
+                }
             }
         }
         .onAppear {
+            checkForTodayBirthdays()
             UNUserNotificationCenter.current().setBadgeCount(0)
+        }
+    }
+    
+    private func checkForTodayBirthdays() {
+        let today = Calendar.current.startOfDay(for: Date())
+        for person in people {
+            let birthday = Calendar.current.startOfDay(for: person.birthday)
+            if Calendar.current.isDate(today, inSameDayAs: birthday) {
+                withAnimation {
+                    showCelebration = true
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
+                    withAnimation {
+                        showCelebration = false
+                    }
+                }
+                break
+            }
         }
     }
 }

@@ -27,6 +27,7 @@
 		77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF802C45642E009EA9DC /* Locale+Ext.swift */; };
 		77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */; };
 		77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */; };
+		77E025662C50E46A00EB1600 /* CelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E025652C50E46A00EB1600 /* CelebrationView.swift */; };
 		77EBA3D82C47F22D008C0E5C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBA3D72C47F22C008C0E5C /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		77CCCF802C45642E009EA9DC /* Locale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+Ext.swift"; sourceTree = "<group>"; };
 		77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Ext.swift"; sourceTree = "<group>"; };
 		77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPickerView.swift; sourceTree = "<group>"; };
+		77E025652C50E46A00EB1600 /* CelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelebrationView.swift; sourceTree = "<group>"; };
 		77EBA3D72C47F22C008C0E5C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +164,7 @@
 				778EE4002C3E9CA600FE70DD /* ListCell.swift */,
 				775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */,
 				77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */,
+				77E025652C50E46A00EB1600 /* CelebrationView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */,
 				778EE3FF2C3E9C6600FE70DD /* Category.swift in Sources */,
 				7774D5A02C4974B40041820D /* Theme.swift in Sources */,
+				77E025662C50E46A00EB1600 /* CelebrationView.swift in Sources */,
 				7753558F2C4A96A8004EDD80 /* Reminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

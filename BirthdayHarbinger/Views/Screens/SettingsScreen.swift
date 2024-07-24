@@ -136,7 +136,7 @@ struct SettingsScreen: View {
                                 withAnimation(.easeInOut) {
                                     showingToast.toggle()
                                 }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                     showingToast = false
                                 }
                             }) {
@@ -152,7 +152,7 @@ struct SettingsScreen: View {
             
             Spacer()
             if showingToast {
-                Text("toastMessage".localized(language))
+                Label("toastMessage".localized(language), systemImage: "info.circle")
                     .font(.subheadline)
                     .foregroundColor(.blue.opacity(0.9))
                     .padding(10)

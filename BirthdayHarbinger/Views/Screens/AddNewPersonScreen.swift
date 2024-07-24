@@ -39,7 +39,7 @@ struct AddNewPersonScreen: View {
     
     var body: some View {
         NavigationStack {
-            List {
+            Form {
                 Section("Photo".localized(language)) {
                     Text("selectPhotoHip".localized(language))
                         .font(.system(.footnote))
