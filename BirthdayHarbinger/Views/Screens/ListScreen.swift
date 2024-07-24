@@ -91,6 +91,7 @@ struct ListScreen: View {
                     CelebrationView()
                         .transition(.opacity)
                         .zIndex(1)
+                        .offset(y: -60)
                 }
             }
         }

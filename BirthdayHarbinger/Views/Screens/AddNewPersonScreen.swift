@@ -22,7 +22,7 @@ struct AddNewPersonScreen: View {
     @AppStorage("secondAlertHour") private var saHour: Int = 0
     @AppStorage("secondAlertMinute") private var saMinute: Int = 0
     
-    private let notificationManager = NotificationManager.self
+    private let notificationManager = NotificationManager.shared
     
     @State private var selectedImage: PhotosPickerItem? = nil
     @State private var selectedImageData: Data?
@@ -98,8 +98,8 @@ struct AddNewPersonScreen: View {
                         let person = Personn(name: name, birthday: date, category: category.rawValue)
                         person.imageData = selectedImageData
                         context.insert(person)
-                        notificationManager.shared.scheduleFirstAlertNotification(for: person, reminder: reminder, hour: faHour, minute: faMinute)
-                        notificationManager.shared.scheduleSecondAlertNotification(for: person, hour: saHour, minute: saHour)
+                        notificationManager.scheduleFirstAlertNotification(for: person, reminder: reminder, hour: faHour, minute: faMinute)
+                        notificationManager.scheduleSecondAlertNotification(for: person, hour: saHour, minute: saHour)
                         dismiss()
                     }
                     .disabled(isAddButtonDisable)

@@ -114,4 +114,22 @@ final class NotificationManager {
             scheduleSecondAlertNotification(for: person, hour: hour, minute: minute)
         }
     }
+    
+    func listAllPendingNotifications() {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            print("Pending Notifications:")
+            for request in requests {
+                print("ID: \(request.identifier), Title: \(request.content.title), Body: \(request.content.body)")
+            }
+        }
+    }
+    
+    func listAllDeliveredNotifications() {
+        UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
+            print("Delivered Notifications:")
+            for notification in notifications {
+                print("ID: \(notification.request.identifier), Title: \(notification.request.content.title), Body: \(notification.request.content.body)")
+            }
+        }
+    }
 }
