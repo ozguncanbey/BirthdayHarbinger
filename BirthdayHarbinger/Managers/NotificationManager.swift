@@ -119,11 +119,21 @@ final class NotificationManager {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             print("Pending Notifications:")
             for request in requests {
-                print("ID: \(request.identifier), Title: \(request.content.title), Body: \(request.content.body)")
+                var triggerDate: String = "Unknown"
+                
+                if let trigger = request.trigger as? UNCalendarNotificationTrigger {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                    if let nextTriggerDate = trigger.nextTriggerDate() {
+                        triggerDate = dateFormatter.string(from: nextTriggerDate)
+                    }
+                }
+                
+                print("ID: \(request.identifier), Title: \(request.content.title), Body: \(request.content.body), Trigger Date: \(triggerDate)")
             }
         }
     }
-    
+
     func listAllDeliveredNotifications() {
         UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
             print("Delivered Notifications:")
