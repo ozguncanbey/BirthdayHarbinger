@@ -78,19 +78,19 @@ struct BirthdayWidgetEntryView: View {
                     .font(.largeTitle)
                 Text(entry.name)
                     .font(.headline)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.black)
                 Text("\(entry.age) " + (entry.age == 1 ? "year".localized(language) : "years".localized(language)) + " " + "old".localized(language))
-                    .font(.subheadline)
-                    .foregroundColor(.primary)
+                    .font(.footnote)
+                    .foregroundColor(.black)
             } else {
                 Image("cake2")
                     
                 Text(entry.name)
                     .font(.headline)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.black)
                 Text("\(entry.daysLeft) " + (entry.daysLeft == 1 ? "day".localized(language) : "days".localized(language)) + " " + "later".localized(language))
-                    .font(.subheadline)
-                    .foregroundColor(.primary)
+                    .font(.footnote)
+                    .foregroundColor(.black)
             }
         }
         .padding()
@@ -104,7 +104,7 @@ struct BirthdayWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             BirthdayWidgetEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .containerBackground(.white, for: .widget)
                 .modelContainer(for: Personn.self)
         }
         .configurationDisplayName("Birthday Widget")
