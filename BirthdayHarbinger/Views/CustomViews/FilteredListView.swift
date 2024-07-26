@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 import SwiftData
 
 struct FilteredListView: View {
@@ -70,6 +71,7 @@ struct FilteredListView: View {
                                     if let personToDelete = personToDelete {
                                         context.delete(personToDelete)
                                         notificationManager.removeNotifications(for: personToDelete)
+                                        WidgetCenter.shared.reloadTimelines(ofKind: "BirthdayWidget")
                                     }
                                 },
                                 secondaryButton: .cancel()

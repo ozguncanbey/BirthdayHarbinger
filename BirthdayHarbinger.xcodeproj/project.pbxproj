@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		773089322C4407B000933E51 /* FilteredListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773089312C4407B000933E51 /* FilteredListView.swift */; };
+		7737675D2C5411E100B257A7 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CBCB902C4E843600BFE42B /* String+Ext.swift */; };
+		7737675E2C54125A00B257A7 /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7774D5A12C4982700041820D /* LocaleManager.swift */; };
+		7737675F2C541B6D00B257A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */; };
 		7753558F2C4A96A8004EDD80 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7753558E2C4A96A8004EDD80 /* Reminder.swift */; };
 		775C763C2C5281B300C6E124 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775C763B2C5281B300C6E124 /* WidgetKit.framework */; };
 		775C763E2C5281B300C6E124 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775C763D2C5281B300C6E124 /* SwiftUI.framework */; };
@@ -339,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7737675F2C541B6D00B257A7 /* Assets.xcassets in Resources */,
 				775C76452C5281B400C6E124 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,7 +365,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				775C76532C52892000C6E124 /* Personn.swift in Sources */,
+				7737675E2C54125A00B257A7 /* LocaleManager.swift in Sources */,
 				775C76432C5281B300C6E124 /* BirthdayWidget.swift in Sources */,
+				7737675D2C5411E100B257A7 /* String+Ext.swift in Sources */,
 				775C76412C5281B300C6E124 /* BirthdayWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
