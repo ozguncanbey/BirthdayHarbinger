@@ -102,10 +102,8 @@ struct ListScreen: View {
     }
     
     private func checkForTodayBirthdays() {
-        let today = Calendar.current.startOfDay(for: Date())
         for person in people {
-            let birthday = Calendar.current.startOfDay(for: person.birthday)
-            if Calendar.current.isDate(today, inSameDayAs: birthday) {
+            if person.calculateLeftDays() == "0" {
                 withAnimation {
                     showCelebration = true
                 }

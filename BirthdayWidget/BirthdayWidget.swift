@@ -31,8 +31,10 @@ struct Provider: TimelineProvider {
             let daysLeft = Int(nextBirthday.calculateLeftDays() ?? "0") ?? 0
             let isBirthday = daysLeft == 0
             let age = nextBirthday.calculateTurnsAge()
+            print("Next birthday: \(nextBirthday.name), Days left: \(daysLeft), Is Birthday: \(isBirthday), Age: \(age)")
             return SimpleEntry(date: date, name: nextBirthday.name, daysLeft: daysLeft, isBirthday: isBirthday, age: age)
         } else {
+            print("No upcoming birthdays found")
             return SimpleEntry(date: date, name: "Unknown", daysLeft: 0, isBirthday: false, age: 0)
         }
     }
@@ -43,15 +45,19 @@ struct Provider: TimelineProvider {
             let fetchDescriptor = FetchDescriptor<Personn>()
             let people = try container.mainContext.fetch(fetchDescriptor)
             
-            // Find the person with the birthday today or the next upcoming birthday
+            // Doğum günü bugün olan kişiyi veya en yakın doğum gününü bul
             let today = Calendar.current.startOfDay(for: Date())
             if let todayBirthday = people.first(where: { Calendar.current.isDate($0.birthday, inSameDayAs: today) }) {
                 return todayBirthday
             }
             
-            return people.sorted { ($0.calculateLeftDays() ?? "0") < ($1.calculateLeftDays() ?? "0") }.first
+            return people.sorted {
+                let daysLeft0 = Int($0.calculateLeftDays() ?? "0") ?? 0
+                let daysLeft1 = Int($1.calculateLeftDays() ?? "0") ?? 0
+                return daysLeft0 < daysLeft1
+            }.first
         } catch {
-            print("Error fetching data: \(error)")
+            print("Veri çekme hatası: \(error)")
             return nil
         }
     }
@@ -84,7 +90,9 @@ struct BirthdayWidgetEntryView: View {
                     .foregroundColor(.black)
             } else {
                 Image("cake2")
-                    
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50, height: 50)
                 Text(entry.name)
                     .font(.headline)
                     .foregroundColor(.black)

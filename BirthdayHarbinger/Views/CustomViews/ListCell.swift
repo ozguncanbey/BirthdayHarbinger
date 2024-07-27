@@ -1,10 +1,3 @@
-//
-//  ListCell.swift
-//  BirthdayHarbinger
-//
-//  Created by Özgün Can Beydili on 10.07.2024.
-//
-
 import SwiftUI
 
 struct ListCell: View {
@@ -37,8 +30,18 @@ struct ListCell: View {
             }
             
             VStack(alignment: .leading) {
-                Text(person.name)
-                    .font(.system(size: 14, weight: .bold))
+                HStack {
+                    Text(person.name)
+                        .font(.system(size: 14, weight: .bold))
+                    
+                    if person.isPinned {
+                        Image(systemName: "pin.fill")
+                            .resizable()
+                            .frame(width: 12, height: 12)
+                            .foregroundColor(.secondary)
+                            .padding(.leading, 8)
+                    }
+                }
                 
                 HStack {
                     Text(person.birthday.formatted(using: language))
