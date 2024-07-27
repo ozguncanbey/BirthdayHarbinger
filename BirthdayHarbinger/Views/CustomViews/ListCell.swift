@@ -37,9 +37,8 @@ struct ListCell: View {
                     if person.isPinned {
                         Image(systemName: "pin.fill")
                             .resizable()
-                            .frame(width: 12, height: 12)
+                            .frame(width: 10, height: 12)
                             .foregroundColor(.secondary)
-                            .padding(.leading, 8)
                     }
                 }
                 

@@ -34,7 +34,6 @@ struct Provider: TimelineProvider {
             print("Next birthday: \(nextBirthday.name), Days left: \(daysLeft), Is Birthday: \(isBirthday), Age: \(age)")
             return SimpleEntry(date: date, name: nextBirthday.name, daysLeft: daysLeft, isBirthday: isBirthday, age: age)
         } else {
-            print("No upcoming birthdays found")
             return SimpleEntry(date: date, name: "Unknown", daysLeft: 0, isBirthday: false, age: 0)
         }
     }
@@ -45,7 +44,6 @@ struct Provider: TimelineProvider {
             let fetchDescriptor = FetchDescriptor<Personn>()
             let people = try container.mainContext.fetch(fetchDescriptor)
             
-            // Doğum günü bugün olan kişiyi veya en yakın doğum gününü bul
             let today = Calendar.current.startOfDay(for: Date())
             if let todayBirthday = people.first(where: { Calendar.current.isDate($0.birthday, inSameDayAs: today) }) {
                 return todayBirthday
@@ -57,7 +55,6 @@ struct Provider: TimelineProvider {
                 return daysLeft0 < daysLeft1
             }.first
         } catch {
-            print("Veri çekme hatası: \(error)")
             return nil
         }
     }
@@ -80,25 +77,37 @@ struct BirthdayWidgetEntryView: View {
     var body: some View {
         VStack(spacing: 10) {
             if entry.isBirthday {
-                Text("🎉")
-                    .font(.largeTitle)
-                Text(entry.name)
-                    .font(.headline)
-                    .foregroundColor(.black)
-                Text("\(entry.age) " + (entry.age == 1 ? "year".localized(language) : "years".localized(language)) + " " + "old".localized(language))
-                    .font(.footnote)
-                    .foregroundColor(.black)
+                ZStack {
+                    Image("celeb")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 120)
+                    VStack {
+                        Text(entry.name)
+                            .font(.headline)
+                            .foregroundColor(.black)
+                        Text("\(entry.age) " + (entry.age == 1 ? "year".localized(language) : "years".localized(language)) + " " + "old".localized(language))
+                            .font(.footnote)
+                            .foregroundColor(.black)
+                    }
+                }
             } else {
-                Image("cake2")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 50, height: 50)
-                Text(entry.name)
-                    .font(.headline)
-                    .foregroundColor(.black)
-                Text("\(entry.daysLeft) " + (entry.daysLeft == 1 ? "day".localized(language) : "days".localized(language)) + " " + "later".localized(language))
-                    .font(.footnote)
-                    .foregroundColor(.black)
+                ZStack {
+                    Image("cake3")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 120)
+                    VStack {
+                        Text(entry.name)
+                            .font(.headline)
+                            .foregroundColor(.black)
+                        Text("\(entry.daysLeft) " + (entry.daysLeft == 1 ? "day".localized(language) : "days".localized(language)) + " " + "later".localized(language))
+                            .font(.footnote)
+                            .foregroundColor(.black)
+                        
+                        Spacer()
+                    }
+                }
             }
         }
         .padding()
