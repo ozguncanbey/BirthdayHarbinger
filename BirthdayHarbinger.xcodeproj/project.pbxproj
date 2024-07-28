@@ -37,6 +37,7 @@
 		77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF802C45642E009EA9DC /* Locale+Ext.swift */; };
 		77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */; };
 		77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */; };
+		77D2247F2C568982005D55C4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77CCCF7C2C4557FB009EA9DC /* Localizable.strings */; };
 		77D4A9862C552C8C00400CB3 /* Locale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF802C45642E009EA9DC /* Locale+Ext.swift */; };
 		77E025662C50E46A00EB1600 /* CelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E025652C50E46A00EB1600 /* CelebrationView.swift */; };
 		77EBA3D82C47F22D008C0E5C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBA3D72C47F22C008C0E5C /* NotificationManager.swift */; };
@@ -344,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7737675F2C541B6D00B257A7 /* Assets.xcassets in Resources */,
+				77D2247F2C568982005D55C4 /* Localizable.strings in Resources */,
 				775C76452C5281B400C6E124 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

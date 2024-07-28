@@ -78,34 +78,41 @@ struct BirthdayWidgetEntryView: View {
         VStack(spacing: 10) {
             if entry.isBirthday {
                 ZStack {
-                    Image("celeb")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 150, height: 120)
-                    VStack {
-                        Text(entry.name)
-                            .font(.headline)
-                            .foregroundColor(.black)
-                        Text("\(entry.age) " + (entry.age == 1 ? "year".localized(language) : "years".localized(language)) + " " + "old".localized(language))
-                            .font(.footnote)
-                            .foregroundColor(.black)
-                    }
-                }
-            } else {
-                ZStack {
                     Image("cake3")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 150, height: 120)
+                    
                     VStack {
                         Text(entry.name)
                             .font(.headline)
                             .foregroundColor(.black)
-                        Text("\(entry.daysLeft) " + (entry.daysLeft == 1 ? "day".localized(language) : "days".localized(language)) + " " + "later".localized(language))
+                            .shadow(color: Color.gray.opacity(0.5), radius: 1, x: 1, y: 1)
+                        
+                        Text("\(entry.age) " + (entry.age == 1 ? "year".localized(language) : "years".localized(language)) + " " + "old".localized(language))
                             .font(.footnote)
                             .foregroundColor(.black)
                         
                         Spacer()
+                    }
+                }
+            } else {
+                ZStack {
+                    Image("celeb1")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 120)
+                    VStack {
+                        Text(entry.name)
+                            .font(.system(size: 24, weight: .semibold))
+                            .foregroundColor(.black)
+                            .shadow(color: Color.gray.opacity(0.5), radius: 1, x: 1, y: 1)
+                            .padding(.bottom, 8)
+
+                        
+                        Text("\(entry.daysLeft) " + (entry.daysLeft == 1 ? "day".localized(language) : "days".localized(language)) + " " + "later".localized(language))
+                            .font(.system(size: 18, weight: .regular))
+                            .foregroundColor(.black)
                     }
                 }
             }
