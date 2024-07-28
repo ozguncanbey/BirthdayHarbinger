@@ -2,9 +2,13 @@ import WidgetKit
 import SwiftUI
 import SwiftData
 
+import WidgetKit
+import SwiftUI
+import SwiftData
+
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), name: "Alice", daysLeft: 5, isBirthday: false, age: 0)
+        SimpleEntry(date: Date(), imageData: nil, name: "Alice", daysLeft: 5, isBirthday: false, age: 0)
     }
     
     @MainActor func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
@@ -31,10 +35,11 @@ struct Provider: TimelineProvider {
             let daysLeft = Int(nextBirthday.calculateLeftDays() ?? "0") ?? 0
             let isBirthday = daysLeft == 0
             let age = nextBirthday.calculateTurnsAge()
+            let imageData = nextBirthday.imageData
             print("Next birthday: \(nextBirthday.name), Days left: \(daysLeft), Is Birthday: \(isBirthday), Age: \(age)")
-            return SimpleEntry(date: date, name: nextBirthday.name, daysLeft: daysLeft, isBirthday: isBirthday, age: age)
+            return SimpleEntry(date: date, imageData: imageData, name: nextBirthday.name, daysLeft: daysLeft, isBirthday: isBirthday, age: age)
         } else {
-            return SimpleEntry(date: date, name: "Unknown", daysLeft: 0, isBirthday: false, age: 0)
+            return SimpleEntry(date: date, imageData: nil, name: "Unknown", daysLeft: 0, isBirthday: false, age: 0)
         }
     }
     
@@ -62,6 +67,7 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let imageData: Data?
     let name: String
     let daysLeft: Int
     let isBirthday: Bool
@@ -78,16 +84,28 @@ struct BirthdayWidgetEntryView: View {
         VStack(spacing: 10) {
             if entry.isBirthday {
                 ZStack {
-                    Image("cake3")
+                    Image("bd")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 150, height: 120)
                     
                     VStack {
+                        if let imageData = entry.imageData, let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .clipShape(.circle)
+                                .frame(width: 60, height: 60)
+                                .padding(.bottom, 8)
+                        } else {
+                            Text("HPD".localized(language))
+                                .font(.system(size: 13, weight: .regular))
+                                .padding(.bottom, 8)
+                        }
+                        
                         Text(entry.name)
                             .font(.headline)
                             .foregroundColor(.black)
-                            .shadow(color: Color.gray.opacity(0.5), radius: 1, x: 1, y: 1)
+                            .shadow(color: .gray.opacity(0.5), radius: 1, x: 1, y: 1)
                             .padding(.bottom, 2)
                         
                         Text("\(entry.age) " + (entry.age == 1 ? "year".localized(language) : "years".localized(language)) + " " + "old".localized(language))
@@ -99,34 +117,31 @@ struct BirthdayWidgetEntryView: View {
                 }
             } else {
                 ZStack {
-                    Image("celeb1")
+                    Image("cake3")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 150, height: 120)
+                    
                     VStack {
-                        Text("Next Birthday:".localized(language))
-                            .font(.system(size: 12, weight: .regular))
-                            .padding(.bottom, 5)
-                        
                         Text(entry.name)
-                            .font(.system(size: 24, weight: .semibold))
+                            .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(.black)
-                            .shadow(color: Color.gray.opacity(0.5), radius: 1, x: 1, y: 1)
-                            .padding(.bottom, 8)
-
+                            .shadow(color: .gray.opacity(0.5), radius: 1, x: 1, y: 1)
+                            .padding(.bottom, 1)
+                        
                         Text("\(entry.daysLeft) " + (entry.daysLeft == 1 ? "day".localized(language) : "days".localized(language)) + " " + "later".localized(language))
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.black)
+                        
+                        Spacer()
                     }
                 }
-
             }
         }
         .padding()
         .cornerRadius(10)
     }
 }
-
 struct BirthdayWidget: Widget {
     let kind: String = "BirthdayWidget"
     
@@ -144,7 +159,7 @@ struct BirthdayWidget: Widget {
 #Preview(as: .systemSmall) {
     BirthdayWidget()
 } timeline: {
-    SimpleEntry(date: .now, name: "Alice", daysLeft: 5, isBirthday: false, age: 0)
-    SimpleEntry(date: .now, name: "Bob", daysLeft: 10, isBirthday: false, age: 0)
-    SimpleEntry(date: .now, name: "Charlie", daysLeft: 0, isBirthday: true, age: 25)
+    SimpleEntry(date: .now, imageData: nil, name: "Alice", daysLeft: 5, isBirthday: false, age: 0)
+    SimpleEntry(date: .now, imageData: nil, name: "Bob", daysLeft: 10, isBirthday: false, age: 0)
+    SimpleEntry(date: .now, imageData: nil, name: "Charlie", daysLeft: 0, isBirthday: true, age: 25)
 }

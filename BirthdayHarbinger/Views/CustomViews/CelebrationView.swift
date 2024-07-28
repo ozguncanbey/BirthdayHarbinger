@@ -19,9 +19,6 @@ struct CelebrationView: View {
                     .animation(Animation.easeInOut(duration: 5).repeatForever(autoreverses: true), value: showEmoji)
             }
             .padding()
-            .background(Color.white.opacity(0.8))
-            .cornerRadius(20)
-            .shadow(radius: 10)
         }
         .onAppear {
             animateBalloons = true
