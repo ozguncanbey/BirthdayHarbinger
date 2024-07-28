@@ -88,6 +88,7 @@ struct BirthdayWidgetEntryView: View {
                             .font(.headline)
                             .foregroundColor(.black)
                             .shadow(color: Color.gray.opacity(0.5), radius: 1, x: 1, y: 1)
+                            .padding(.bottom, 2)
                         
                         Text("\(entry.age) " + (entry.age == 1 ? "year".localized(language) : "years".localized(language)) + " " + "old".localized(language))
                             .font(.footnote)
@@ -103,18 +104,22 @@ struct BirthdayWidgetEntryView: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 150, height: 120)
                     VStack {
+                        Text("Next Birthday:".localized(language))
+                            .font(.system(size: 12, weight: .regular))
+                            .padding(.bottom, 5)
+                        
                         Text(entry.name)
                             .font(.system(size: 24, weight: .semibold))
                             .foregroundColor(.black)
                             .shadow(color: Color.gray.opacity(0.5), radius: 1, x: 1, y: 1)
                             .padding(.bottom, 8)
 
-                        
                         Text("\(entry.daysLeft) " + (entry.daysLeft == 1 ? "day".localized(language) : "days".localized(language)) + " " + "later".localized(language))
-                            .font(.system(size: 18, weight: .regular))
+                            .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.black)
                     }
                 }
+
             }
         }
         .padding()
