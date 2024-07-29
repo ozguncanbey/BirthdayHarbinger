@@ -87,15 +87,13 @@ struct SettingsScreen: View {
                             .onChange(of: appLanguage) {
                                 if appLanguage == "tr" {
                                     LocaleManager.shared.language = .turkish
-                                    notificationManager.updateFirstAlertNotifications(for: people, reminder: reminder, hour: faHour, minute: faMinute)
-                                    notificationManager.updateSecondAlertNotifications(for: people, hour: saHour, minute: saMinute)
-                                    WidgetCenter.shared.reloadTimelines(ofKind: "BirthdayWidget")
                                 } else {
                                     LocaleManager.shared.language = .english
-                                    notificationManager.updateFirstAlertNotifications(for: people, reminder: reminder, hour: faHour, minute: faMinute)
-                                    notificationManager.updateSecondAlertNotifications(for: people, hour: saHour, minute: saMinute)
-                                    WidgetCenter.shared.reloadTimelines(ofKind: "BirthdayWidget")
                                 }
+                                language = LocaleManager.shared.language
+                                notificationManager.updateFirstAlertNotifications(for: people, reminder: reminder, hour: faHour, minute: faMinute)
+                                notificationManager.updateSecondAlertNotifications(for: people, hour: saHour, minute: saMinute)
+                                WidgetCenter.shared.reloadTimelines(ofKind: "BirthdayWidget")
                             }
                         }
                     }

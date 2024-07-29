@@ -2,10 +2,6 @@ import WidgetKit
 import SwiftUI
 import SwiftData
 
-import WidgetKit
-import SwiftUI
-import SwiftData
-
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), imageData: nil, name: "Alice", daysLeft: 5, isBirthday: false, age: 0)
@@ -81,73 +77,81 @@ struct BirthdayWidgetEntryView: View {
     var entry: Provider.Entry
     
     var body: some View {
-        VStack(spacing: 10) {
-            if entry.isBirthday {
-                ZStack {
-                    Image("bd")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 150, height: 120)
-                    
-                    VStack {
-                        if let imageData = entry.imageData, let uiImage = UIImage(data: imageData) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .clipShape(.circle)
-                                .frame(width: 60, height: 60)
-                                .padding(.bottom, 8)
-                        } else {
-                            Text("HPD".localized(language))
-                                .font(.system(size: 13, weight: .regular))
-                                .padding(.bottom, 8)
+        if entry.name == "Unknown" {
+            ContentUnavailableView("There is nobody".localized(language), systemImage: "person.slash.fill", description: Text("Add someone to see".localized(language)))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            VStack(spacing: 10) {
+                if entry.isBirthday {
+                    ZStack {
+                        Image("bd")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 150, height: 120)
+                        
+                        VStack {
+                            if let imageData = entry.imageData, let uiImage = UIImage(data: imageData) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .clipShape(Circle())
+                                    .frame(width: 60, height: 60)
+                                    .padding(.top, 10)
+                                    .padding(.bottom, 3)
+                            } else {
+                                Text("HPD".localized(language))
+                                    .font(.system(size: 13, weight: .regular))
+                                    .padding(.top, 10)
+                                    .padding(.bottom, 8)
+                            }
+                            
+                            Text(entry.name)
+                                .font(.headline)
+                                .foregroundColor(.black)
+                                .shadow(color: .gray.opacity(0.5), radius: 1, x: 1, y: 1)
+                                .padding(.bottom, 2)
+                            
+                            Text("\(entry.age) " + (entry.age == 1 ? "year".localized(language) : "years".localized(language)) + " " + "old".localized(language))
+                                .font(.footnote)
+                                .foregroundColor(.black)
+                            
+                            Spacer()
                         }
-                        
-                        Text(entry.name)
-                            .font(.headline)
-                            .foregroundColor(.black)
-                            .shadow(color: .gray.opacity(0.5), radius: 1, x: 1, y: 1)
-                            .padding(.bottom, 2)
-                        
-                        Text("\(entry.age) " + (entry.age == 1 ? "year".localized(language) : "years".localized(language)) + " " + "old".localized(language))
-                            .font(.footnote)
-                            .foregroundColor(.black)
-                        
-                        Spacer()
                     }
-                }
-            } else {
-                ZStack {
-                    Image("cake3")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 150, height: 120)
-                    
-                    VStack {
-                        Text(entry.name)
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(.black)
-                            .shadow(color: .gray.opacity(0.5), radius: 1, x: 1, y: 1)
-                            .padding(.bottom, 1)
+                } else {
+                    ZStack {
+                        Image("cake3")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 150, height: 120)
                         
-                        Text("\(entry.daysLeft) " + (entry.daysLeft == 1 ? "day".localized(language) : "days".localized(language)) + " " + "later".localized(language))
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.black)
-                        
-                        Spacer()
+                        VStack {
+                            Text(entry.name)
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(.black)
+                                .shadow(color: .gray.opacity(0.5), radius: 1, x: 1, y: 1)
+                            
+                            Text("\(entry.daysLeft) " + (entry.daysLeft == 1 ? "day".localized(language) : "days".localized(language)) + " " + "later".localized(language))
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(.black)
+                            
+                            Spacer()
+                        }
                     }
                 }
             }
+            .padding()
+            .cornerRadius(10)
         }
-        .padding()
-        .cornerRadius(10)
     }
 }
+
 struct BirthdayWidget: Widget {
     let kind: String = "BirthdayWidget"
     
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             BirthdayWidgetEntryView(entry: entry)
+                .environment(\.locale, LocaleManager.shared.language.locale)
                 .containerBackground(.white, for: .widget)
                 .modelContainer(for: Personn.self)
         }
@@ -159,7 +163,7 @@ struct BirthdayWidget: Widget {
 #Preview(as: .systemSmall) {
     BirthdayWidget()
 } timeline: {
-    SimpleEntry(date: .now, imageData: nil, name: "Alice", daysLeft: 5, isBirthday: false, age: 0)
-    SimpleEntry(date: .now, imageData: nil, name: "Bob", daysLeft: 10, isBirthday: false, age: 0)
+    SimpleEntry(date: .now, imageData: nil, name: "Alice", daysLeft: 5, isBirthday: false, age: 10)
     SimpleEntry(date: .now, imageData: nil, name: "Charlie", daysLeft: 0, isBirthday: true, age: 25)
+    SimpleEntry(date: .now, imageData: nil, name: "Unknown", daysLeft: 0, isBirthday: false, age: 0)
 }
