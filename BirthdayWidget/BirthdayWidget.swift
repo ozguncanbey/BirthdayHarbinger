@@ -93,7 +93,7 @@ struct BirthdayWidgetEntryView: View {
                             if let imageData = entry.imageData, let uiImage = UIImage(data: imageData) {
                                 Image(uiImage: uiImage)
                                     .resizable()
-                                    .clipShape(Circle())
+                                    .clipShape(.circle)
                                     .frame(width: 60, height: 60)
                                     .padding(.top, 10)
                                     .padding(.bottom, 3)
