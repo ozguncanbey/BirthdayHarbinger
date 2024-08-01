@@ -16,14 +16,14 @@ struct FilteredListView: View {
     @State private var personToDelete: Personn?
     
     private var alertMessage: String {
-        if Locale.current.isTurkish {
+        if language == .turkish {
             return "\(personToDelete?.name ?? "bu kişiyi")'i silmek istediğinizden emin misiniz?"
         } else {
             return "Are you sure you want to delete \(personToDelete?.name ?? "this person")?"
         }
     }
     
-    var filteredPeople: [Personn] {
+    private var filteredPeople: [Personn] {
         let filtered = category == .All ? people : people.filter { $0.category == category.rawValue }
         
         return filtered.sorted { person1, person2 in
@@ -48,35 +48,8 @@ struct FilteredListView: View {
                     ListCell(person: person, language: language)
                     if editMode == .active {
                         Spacer()
-                        Button(action: {
-                            person.isPinned.toggle()
-                            try? context.save()
-                        }) {
-                            Image(systemName: person.isPinned ? "pin.fill" : "pin")
-                                .foregroundColor(.blue)
-                        }
-                        Button(action: {
-                            personToDelete = person
-                            showAlert = true
-                        }) {
-                            Image(systemName: "trash")
-                                .foregroundColor(.red)
-                        }
-                        .buttonStyle(BorderlessButtonStyle())
-                        .alert(isPresented: $showAlert) {
-                            Alert(
-                                title: Text("alertTitle".localized(language)),
-                                message: Text(alertMessage),
-                                primaryButton: .destructive(Text("Delete".localized(language))) {
-                                    if let personToDelete = personToDelete {
-                                        context.delete(personToDelete)
-                                        notificationManager.removeNotifications(for: personToDelete)
-                                        WidgetCenter.shared.reloadAllTimelines()
-                                    }
-                                },
-                                secondaryButton: .cancel()
-                            )
-                        }
+                        PinButton(person: person)
+                        DeleteButton(person: person, showAlert: $showAlert, personToDelete: $personToDelete)
                     }
                 }
                 .listRowBackground(index % 2 == 0 ? Color.clear : Color.gray.opacity(0.1))
@@ -90,5 +63,52 @@ struct FilteredListView: View {
                     .offset(y: -60)
             }
         }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("alertTitle".localized(language)),
+                message: Text(alertMessage),
+                primaryButton: .destructive(Text("Delete".localized(language))) {
+                    if let personToDelete = personToDelete {
+                        context.delete(personToDelete)
+                        notificationManager.removeNotifications(for: personToDelete)
+                        WidgetCenter.shared.reloadAllTimelines()
+                    }
+                },
+                secondaryButton: .cancel()
+            )
+        }
+    }
+}
+
+struct PinButton: View {
+    @Environment(\.modelContext) private var context
+    var person: Personn
+    
+    var body: some View {
+        Button(action: {
+            person.isPinned.toggle()
+            try? context.save()
+        }) {
+            Image(systemName: person.isPinned ? "pin.fill" : "pin")
+                .foregroundColor(.blue)
+        }
+    }
+}
+
+struct DeleteButton: View {
+    @Environment(\.modelContext) private var context
+    var person: Personn
+    @Binding var showAlert: Bool
+    @Binding var personToDelete: Personn?
+    
+    var body: some View {
+        Button(action: {
+            personToDelete = person
+            showAlert = true
+        }) {
+            Image(systemName: "trash")
+                .foregroundColor(.red)
+        }
+        .buttonStyle(BorderlessButtonStyle())
     }
 }

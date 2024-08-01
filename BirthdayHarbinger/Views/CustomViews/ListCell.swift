@@ -1,15 +1,21 @@
 import SwiftUI
 
 struct ListCell: View {
-
+    
     let person: Personn
     var isBirthdayToday: Bool
+    var turnsAgeText: String
+    var leftDaysText: String
+    var leftDays: String?
     var language: Language
     
     init(person: Personn, language: Language) {
         self.person = person
-        self.isBirthdayToday = person.calculateLeftDays() == "0"
         self.language = language
+        self.isBirthdayToday = person.calculateLeftDays() == "0"
+        self.turnsAgeText = language == .turkish ? "\(person.calculateTurnsAge()) olmaya" : "turns \(person.calculateTurnsAge())"
+        self.leftDays = person.calculateLeftDays()
+        self.leftDaysText = self.leftDays == "1" ? "Day".localized(language) : "Days".localized(language)
     }
     
     var body: some View {
@@ -19,14 +25,14 @@ struct ListCell: View {
                     .resizable()
                     .scaledToFill()
                     .clipShape(.circle)
-                    .frame(width: 60, height: 60, alignment: .center)
+                    .frame(width: 60, height: 60)
             } else {
                 Image(systemName: "person.crop.circle.fill")
                     .resizable()
                     .scaledToFill()
                     .foregroundColor(.secondary)
                     .clipShape(.circle)
-                    .frame(width: 60, height: 60, alignment: .center)
+                    .frame(width: 60, height: 60)
             }
             
             VStack(alignment: .leading) {
@@ -51,15 +57,9 @@ struct ListCell: View {
                             .font(.system(size: 12, weight: .medium))
                             .padding(10)
                     } else {
-                        if Locale.current.isTurkish {
-                            Text("\(person.calculateTurnsAge()) olmaya")
-                                .font(.system(size: 12, weight: .medium))
-                                .padding(10)
-                        } else {
-                            Text("turns \(person.calculateTurnsAge())")
-                                .font(.system(size: 12, weight: .medium))
-                                .padding(10)
-                        }
+                        Text(turnsAgeText)
+                            .font(.system(size: 12, weight: .medium))
+                            .padding(10)
                     }
                 }
             }
@@ -73,10 +73,10 @@ struct ListCell: View {
                         .font(.system(size: 30))
                         .padding(10)
                 } else {
-                    Text(person.calculateLeftDays() ?? "0")
+                    Text(leftDays ?? "0")
                         .font(.system(size: 14, weight: .bold))
                     
-                    Text(person.calculateLeftDays() == "1" ? "Day".localized(language) : "Days".localized(language))
+                    Text(leftDaysText)
                         .font(.system(size: 14, weight: .medium))
                         .padding(10)
                 }
@@ -87,6 +87,6 @@ struct ListCell: View {
 }
 
 //#Preview {
-//    ListCell(person: .dummy)
+//    ListCell(person: .dummy, language: .english)
 //        .modelContainer(Personn.preview)
 //}
