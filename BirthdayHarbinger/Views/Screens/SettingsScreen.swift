@@ -93,7 +93,7 @@ struct SettingsScreen: View {
                                 language = LocaleManager.shared.language
                                 notificationManager.updateFirstAlertNotifications(for: people, reminder: reminder, hour: faHour, minute: faMinute)
                                 notificationManager.updateSecondAlertNotifications(for: people, hour: saHour, minute: saMinute)
-                                WidgetCenter.shared.reloadTimelines(ofKind: "BirthdayWidget")
+                                WidgetCenter.shared.reloadAllTimelines()
                             }
                         }
                     }

@@ -1,5 +1,5 @@
 //
-//  SubscriptionView.swift
+//  SubscriptionScreen.swift
 //  BirthdayHarbinger
 //
 //  Created by Özgün Can Beydili on 31.07.2024.
@@ -8,10 +8,13 @@
 import SwiftUI
 import StoreKit
 
-struct SubscriptionView: View {
+struct SubscriptionScreen: View {
+    
+    @AppStorage("language") private var language = LocaleManager.shared.language
+    
     var body: some View {
         SubscriptionStoreView(productIDs: ["birthdayHarbinger.montly","yearly","lifetime"]) {
-            SubscriptionHeaderView()
+            SubscriptionHeaderView(language: language)
         }
         .subscriptionStorePolicyDestination(for: .termsOfService) {
             Text("Terms of Service")
@@ -30,5 +33,5 @@ struct SubscriptionView: View {
 }
 
 #Preview {
-    SubscriptionView()
+    SubscriptionScreen()
 }

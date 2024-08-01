@@ -44,7 +44,7 @@ struct ListScreen: View {
                     
                     TabView(selection: $category) {
                         ForEach(Category.allCases, id: \.self) { category in
-                            FilteredListView(editMode: $editMode, category: category, people: people)
+                            FilteredListView(editMode: $editMode, category: category, people: people, language: language)
                         }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .always))

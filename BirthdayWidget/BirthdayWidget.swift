@@ -146,7 +146,7 @@ struct BirthdayWidgetEntryView: View {
 }
 
 struct BirthdayWidget: Widget {
-    let kind: String = "BirthdayWidget"
+    let kind: String = "Birthday Widget"
     
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in

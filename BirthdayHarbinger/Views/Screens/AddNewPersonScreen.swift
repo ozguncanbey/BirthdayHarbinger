@@ -102,7 +102,7 @@ struct AddNewPersonScreen: View {
                         notificationManager.scheduleFirstAlertNotification(for: person, reminder: reminder, hour: faHour, minute: faMinute)
                         notificationManager.scheduleSecondAlertNotification(for: person, hour: saHour, minute: saHour)
                         
-                        WidgetCenter.shared.reloadTimelines(ofKind: "BirthdayWidget")
+                        WidgetCenter.shared.reloadAllTimelines()
                         
                         dismiss()
                     }

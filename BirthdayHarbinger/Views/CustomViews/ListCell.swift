@@ -1,15 +1,15 @@
 import SwiftUI
 
 struct ListCell: View {
-    
-    @AppStorage("language") private var language = LocaleManager.shared.language
-    
+
     let person: Personn
     var isBirthdayToday: Bool
+    var language: Language
     
-    init(person: Personn) {
+    init(person: Personn, language: Language) {
         self.person = person
         self.isBirthdayToday = person.calculateLeftDays() == "0"
+        self.language = language
     }
     
     var body: some View {

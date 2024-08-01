@@ -8,7 +8,7 @@ struct FilteredListView: View {
     var category: Category
     var people: [Personn]
     
-    @AppStorage("language") private var language = LocaleManager.shared.language
+    var language: Language
     
     private let notificationManager = NotificationManager.shared
     
@@ -45,7 +45,7 @@ struct FilteredListView: View {
         List {
             ForEach(Array(filteredPeople.enumerated()), id: \.element) { index, person in
                 HStack {
-                    ListCell(person: person)
+                    ListCell(person: person, language: language)
                     if editMode == .active {
                         Spacer()
                         Button(action: {
@@ -71,7 +71,7 @@ struct FilteredListView: View {
                                     if let personToDelete = personToDelete {
                                         context.delete(personToDelete)
                                         notificationManager.removeNotifications(for: personToDelete)
-                                        WidgetCenter.shared.reloadTimelines(ofKind: "BirthdayWidget")
+                                        WidgetCenter.shared.reloadAllTimelines()
                                     }
                                 },
                                 secondaryButton: .cancel()
