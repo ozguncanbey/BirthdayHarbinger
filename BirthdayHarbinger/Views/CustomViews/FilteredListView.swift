@@ -13,13 +13,16 @@ struct FilteredListView: View {
     private let notificationManager = NotificationManager.shared
     
     @State private var showAlert = false
+    @State private var alertType: AlertType = .delete
     @State private var personToDelete: Personn?
+    @State private var personToHide: Personn?
     
     private var alertMessage: String {
-        if language == .turkish {
-            return "\(personToDelete?.name ?? "bu kişiyi")'i silmek istediğinizden emin misiniz?"
-        } else {
-            return "Are you sure you want to delete \(personToDelete?.name ?? "this person")?"
+        switch alertType {
+        case .delete:
+            return language == .turkish ? "\(personToDelete?.name ?? "bu kişiyi")'i silmek istediğinizden emin misiniz?" : "Are you sure you want to delete \(personToDelete?.name ?? "this person")?"
+        case .hide:
+            return language == .turkish ? "\(personToHide?.name ?? "bu kişiyi")'i gizlemek istediğinizden emin misiniz?" : "Are you sure you want to hide \(personToHide?.name ?? "this person")?"
         }
     }
     
@@ -48,8 +51,11 @@ struct FilteredListView: View {
                     ListCell(person: person, language: language)
                     if editMode == .active {
                         Spacer()
-                        PinButton(person: person)
-                        DeleteButton(person: person, showAlert: $showAlert, personToDelete: $personToDelete)
+                        VStack(spacing: 10) {
+                            PinButton(person: person)
+                            HideButton(person: person, showAlert: $showAlert, alertType: $alertType, personToHide: $personToHide)
+                            DeleteButton(person: person, showAlert: $showAlert, alertType: $alertType, personToDelete: $personToDelete)
+                        }
                     }
                 }
                 .listRowBackground(index % 2 == 0 ? Color.clear : Color.gray.opacity(0.1))
@@ -65,13 +71,21 @@ struct FilteredListView: View {
         }
         .alert(isPresented: $showAlert) {
             Alert(
-                title: Text("alertTitle".localized(language)),
+                title: Text(alertType == .delete ? "alertTitle".localized(language) : "hideAlertTitle".localized(language)),
                 message: Text(alertMessage),
-                primaryButton: .destructive(Text("Delete".localized(language))) {
-                    if let personToDelete = personToDelete {
-                        context.delete(personToDelete)
-                        notificationManager.removeNotifications(for: personToDelete)
-                        WidgetCenter.shared.reloadAllTimelines()
+                primaryButton: .destructive(Text(alertType == .delete ? "Delete".localized(language) : "Hide".localized(language))) {
+                    switch alertType {
+                    case .delete:
+                        if let personToDelete = personToDelete {
+                            context.delete(personToDelete)
+                            notificationManager.removeNotifications(for: personToDelete)
+                            WidgetCenter.shared.reloadAllTimelines()
+                        }
+                    case .hide:
+                        if let personToHide = personToHide {
+                            personToHide.isHidden.toggle()
+                            try? context.save()
+                        }
                     }
                 },
                 secondaryButton: .cancel()
@@ -95,15 +109,36 @@ struct PinButton: View {
     }
 }
 
+struct HideButton: View {
+    @Environment(\.modelContext) private var context
+    var person: Personn
+    @Binding var showAlert: Bool
+    @Binding var alertType: AlertType
+    @Binding var personToHide: Personn?
+    
+    var body: some View {
+        Button(action: {
+            personToHide = person
+            alertType = .hide
+            showAlert = true
+        }) {
+            Image(systemName: "eye.slash")
+                .foregroundColor(.blue)
+        }
+    }
+}
+
 struct DeleteButton: View {
     @Environment(\.modelContext) private var context
     var person: Personn
     @Binding var showAlert: Bool
+    @Binding var alertType: AlertType
     @Binding var personToDelete: Personn?
     
     var body: some View {
         Button(action: {
             personToDelete = person
+            alertType = .delete
             showAlert = true
         }) {
             Image(systemName: "trash")

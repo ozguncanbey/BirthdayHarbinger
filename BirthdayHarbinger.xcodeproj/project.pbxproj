@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		771BCD822C5E68F300347648 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771BCD812C5E68F300347648 /* AlertType.swift */; };
 		773089322C4407B000933E51 /* FilteredListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773089312C4407B000933E51 /* FilteredListView.swift */; };
 		7737675D2C5411E100B257A7 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CBCB902C4E843600BFE42B /* String+Ext.swift */; };
 		7737675E2C54125A00B257A7 /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7774D5A12C4982700041820D /* LocaleManager.swift */; };
@@ -71,6 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		771BCD812C5E68F300347648 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		773089312C4407B000933E51 /* FilteredListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredListView.swift; sourceTree = "<group>"; };
 		7753558E2C4A96A8004EDD80 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		775C76392C5281B300C6E124 /* BirthdayWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BirthdayWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +218,7 @@
 				778EE3FE2C3E9C6600FE70DD /* Category.swift */,
 				7774D59F2C4974B40041820D /* Theme.swift */,
 				7753558E2C4A96A8004EDD80 /* Reminder.swift */,
+				771BCD812C5E68F300347648 /* AlertType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */,
 				7774D5A22C4982700041820D /* LocaleManager.swift in Sources */,
 				77EBA3D82C47F22D008C0E5C /* NotificationManager.swift in Sources */,
+				771BCD822C5E68F300347648 /* AlertType.swift in Sources */,
 				77CBCB932C4EB5CF00BFE42B /* Date+Ext.swift in Sources */,
 				7774D59E2C4970E00041820D /* SettingsScreen.swift in Sources */,
 				77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */,

@@ -13,6 +13,7 @@ struct ListScreen: View {
     @State private var navigateToAddNewPersonScreen = false
     @State private var navigateToSettings = false
     @State private var showCelebration = false
+    @State private var showingHiddenPersons = false
     @State var category: Category = .All
     
     @Query private var people: [Personn]
