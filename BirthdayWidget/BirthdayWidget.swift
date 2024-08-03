@@ -99,6 +99,7 @@ struct BirthdayWidgetEntryView: View {
                                     .padding(.bottom, 3)
                             } else {
                                 Text("HPD".localized(language))
+                                    .foregroundStyle(.black)
                                     .font(.system(size: 13, weight: .regular))
                                     .padding(.top, 10)
                                     .padding(.bottom, 8)
