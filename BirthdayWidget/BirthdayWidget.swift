@@ -6,39 +6,43 @@ struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), imageData: nil, name: "Alice", daysLeft: 5, isBirthday: false, age: 0)
     }
-    
+
     @MainActor func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let entry = createEntry()
         completion(entry)
     }
-    
+
     @MainActor func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         var entries: [SimpleEntry] = []
         let currentDate = Date()
         
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = createEntry(for: entryDate)
-            entries.append(entry)
-        }
+        // Create the entry for the current date
+        let entry = createEntry(for: currentDate)
+        entries.append(entry)
+        
+        // Calculate the next 00:00
+        let nextMidnight = Calendar.current.nextDate(after: currentDate, matching: DateComponents(hour: 0, minute: 0), matchingPolicy: .nextTime)!
+
+        // Create the entry for the next 00:00
+        let nextEntry = createEntry(for: nextMidnight)
+        entries.append(nextEntry)
         
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
-    
+
     @MainActor func createEntry(for date: Date = Date()) -> SimpleEntry {
         if let nextBirthday = getNextUpcomingBirthday() {
             let daysLeft = Int(nextBirthday.calculateLeftDays() ?? "0") ?? 0
             let isBirthday = daysLeft == 0
             let age = nextBirthday.calculateTurnsAge()
             let imageData = nextBirthday.imageData
-            print("Next birthday: \(nextBirthday.name), Days left: \(daysLeft), Is Birthday: \(isBirthday), Age: \(age)")
             return SimpleEntry(date: date, imageData: imageData, name: nextBirthday.name, daysLeft: daysLeft, isBirthday: isBirthday, age: age)
         } else {
             return SimpleEntry(date: date, imageData: nil, name: "Unknown", daysLeft: 0, isBirthday: false, age: 0)
         }
     }
-    
+
     @MainActor func getNextUpcomingBirthday() -> Personn? {
         do {
             let container = try ModelContainer(for: Personn.self)

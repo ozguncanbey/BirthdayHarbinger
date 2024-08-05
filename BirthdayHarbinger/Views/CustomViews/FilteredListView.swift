@@ -106,6 +106,7 @@ struct PinButton: View {
             Image(systemName: person.isPinned ? "pin.fill" : "pin")
                 .foregroundColor(.blue)
         }
+        .buttonStyle(BorderlessButtonStyle())
     }
 }
 
@@ -125,6 +126,7 @@ struct HideButton: View {
             Image(systemName: "eye.slash")
                 .foregroundColor(.blue)
         }
+        .buttonStyle(BorderlessButtonStyle())
     }
 }
 
