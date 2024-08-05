@@ -14,7 +14,9 @@ struct ListScreen: View {
     @State private var navigateToSettings = false
     @State private var showCelebration = false
     @State private var showingHiddenPersons = false
-    @State var category: Category = .All
+    @State private var authSuccess = false
+    @State private var category: Category = .All
+    @State private var isAuthenticating = false
     
     @Query private var people: [Personn]
     
@@ -95,11 +97,23 @@ struct ListScreen: View {
                         .zIndex(1)
                         .offset(y: -60)
                 }
+                
+                if isAuthenticating {
+                    //                    BiometricAuthView(isPresented: $isAuthenticating, isSuccess: $authSuccess)
+                    //                        .zIndex(2)
+                    //                        .transition(.opacity)
+                }
             }
         }
         .onAppear {
             checkForTodayBirthdays()
             UNUserNotificationCenter.current().setBadgeCount(0)
+        }
+        .onChange(of: authSuccess) {
+            if authSuccess {
+                showingHiddenPersons = true
+                isAuthenticating = false
+            }
         }
     }
     
