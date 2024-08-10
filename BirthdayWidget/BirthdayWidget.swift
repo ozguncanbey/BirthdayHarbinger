@@ -3,7 +3,7 @@ import SwiftUI
 import SwiftData
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
+    @MainActor func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), imageData: nil, name: "Alice", daysLeft: 5, isBirthday: false, age: 0)
     }
 
@@ -13,29 +13,16 @@ struct Provider: TimelineProvider {
     }
 
     @MainActor func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
-        var entries: [SimpleEntry] = []
-        let currentDate = Date()
-        
-        // Create the entry for the current date
-        let entry = createEntry(for: currentDate)
-        entries.append(entry)
-        
-        // Calculate the next 00:00
-        let nextMidnight = Calendar.current.nextDate(after: currentDate, matching: DateComponents(hour: 0, minute: 0), matchingPolicy: .nextTime)!
-
-        // Create the entry for the next 00:00
-        let nextEntry = createEntry(for: nextMidnight)
-        entries.append(nextEntry)
-        
+        let entries = createTimelineEntries()
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
 
-    @MainActor func createEntry(for date: Date = Date()) -> SimpleEntry {
+    @MainActor private func createEntry(for date: Date = Date()) -> SimpleEntry {
         if let nextBirthday = getNextUpcomingBirthday() {
             let daysLeft = Int(nextBirthday.calculateLeftDays() ?? "0") ?? 0
             let isBirthday = daysLeft == 0
-            let age = nextBirthday.calculateTurnsAge()
+            let age = nextBirthday.calculateTurnsAge() - 1
             let imageData = nextBirthday.imageData
             return SimpleEntry(date: date, imageData: imageData, name: nextBirthday.name, daysLeft: daysLeft, isBirthday: isBirthday, age: age)
         } else {
@@ -43,7 +30,21 @@ struct Provider: TimelineProvider {
         }
     }
 
-    @MainActor func getNextUpcomingBirthday() -> Personn? {
+    @MainActor private func createTimelineEntries() -> [SimpleEntry] {
+        var entries: [SimpleEntry] = []
+        let currentDate = Date()
+        let entry = createEntry(for: currentDate)
+        entries.append(entry)
+
+        if let nextMidnight = Calendar.current.nextDate(after: currentDate, matching: DateComponents(hour: 0, minute: 0), matchingPolicy: .nextTime) {
+            let nextEntry = createEntry(for: nextMidnight)
+            entries.append(nextEntry)
+        }
+
+        return entries
+    }
+
+    @MainActor private func getNextUpcomingBirthday() -> Personn? {
         do {
             let container = try ModelContainer(for: Personn.self)
             let fetchDescriptor = FetchDescriptor<Personn>()
@@ -88,7 +89,7 @@ struct BirthdayWidgetEntryView: View {
             VStack(spacing: 10) {
                 if entry.isBirthday {
                     ZStack {
-                        Image("bd")
+                        Image(.bd)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 150, height: 120)
@@ -124,7 +125,7 @@ struct BirthdayWidgetEntryView: View {
                     }
                 } else {
                     ZStack {
-                        Image("cake3")
+                        Image(.cake3)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 150, height: 120)

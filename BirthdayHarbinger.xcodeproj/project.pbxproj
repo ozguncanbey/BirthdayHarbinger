@@ -26,7 +26,6 @@
 		7774D5A02C4974B40041820D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7774D59F2C4974B40041820D /* Theme.swift */; };
 		7774D5A22C4982700041820D /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7774D5A12C4982700041820D /* LocaleManager.swift */; };
 		778363102C60F719005393D5 /* HiddenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7783630F2C60F719005393D5 /* HiddenView.swift */; };
-		778363122C60FF7B005393D5 /* BiometricAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778363112C60FF7B005393D5 /* BiometricAuthView.swift */; };
 		778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */; };
 		778EE3E82C3E9B7E00FE70DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */; };
 		778EE3EB2C3E9B7E00FE70DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EE3EA2C3E9B7E00FE70DD /* Preview Assets.xcassets */; };
@@ -92,7 +91,6 @@
 		7774D59F2C4974B40041820D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		7774D5A12C4982700041820D /* LocaleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleManager.swift; sourceTree = "<group>"; };
 		7783630F2C60F719005393D5 /* HiddenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenView.swift; sourceTree = "<group>"; };
-		778363112C60FF7B005393D5 /* BiometricAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthView.swift; sourceTree = "<group>"; };
 		778EE3E02C3E9B7D00FE70DD /* Birthday Harbinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Birthday Harbinger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778EE3E32C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayHarbingerApp.swift; sourceTree = "<group>"; };
 		778EE3E72C3E9B7E00FE70DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -259,7 +257,6 @@
 				77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */,
 				77E025652C50E46A00EB1600 /* CelebrationView.swift */,
 				77A8FA8E2C5A591400BBF79F /* SubscriptionHeaderView.swift */,
-				778363112C60FF7B005393D5 /* BiometricAuthView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -409,7 +406,6 @@
 				77EBA3D82C47F22D008C0E5C /* NotificationManager.swift in Sources */,
 				771BCD822C5E68F300347648 /* AlertType.swift in Sources */,
 				77CBCB932C4EB5CF00BFE42B /* Date+Ext.swift in Sources */,
-				778363122C60FF7B005393D5 /* BiometricAuthView.swift in Sources */,
 				7774D59E2C4970E00041820D /* SettingsScreen.swift in Sources */,
 				77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */,
 				77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */,
@@ -637,6 +633,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Birthday Harbinger";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "This application requires the use of face ID";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -669,6 +666,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Birthday Harbinger";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "This application requires the use of face ID";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

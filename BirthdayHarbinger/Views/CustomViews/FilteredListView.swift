@@ -64,11 +64,8 @@ struct FilteredListView: View {
         }
         .listStyle(.plain)
         .overlay {
-            if filteredPeople.isEmpty, category != .Hidden {
+            if filteredPeople.isEmpty {
                 ContentUnavailableView("There is nobody".localized(language), systemImage: "person.slash.fill", description: Text("Add someone to see".localized(language)))
-                    .offset(y: -60)
-            } else if category == .Hidden {
-                ContentUnavailableView("Locked Zone".localized(language), systemImage: "lock.fill", description: Text("Use face ID to unlock.".localized(language)))
                     .offset(y: -60)
             }
         }
