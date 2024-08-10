@@ -1,17 +1,35 @@
 import SwiftUI
+import WidgetKit
 import SwiftData
 import LocalAuthentication
 
 struct HiddenView: View {
     @Environment(\.modelContext) private var context
-    @Environment(\.colorScheme) private var colorScheme
+    
+    @Binding var editMode: EditMode
     
     @State var people: [Personn]
     @State private var showingBiometricAuth = true
     @State private var authSuccess = false
     @State private var showTryAgainButton = false
     
+    @State private var showAlert = false
+    @State private var alertType: AlertType = .delete
+    @State private var personToDelete: Personn?
+    @State private var personToUnhide: Personn?
+    
     var language: Language
+    
+    private let notificationManager = NotificationManager.shared
+    
+    private var alertMessage: String {
+        switch alertType {
+        case .delete:
+            return language == .turkish ? "\(personToUnhide?.name ?? "bu kişiyi")'i silmek istediğinizden emin misiniz?" : "Are you sure you want to delete \(personToUnhide?.name ?? "this person")?"
+        case .hide:
+            return language == .turkish ? "\(personToUnhide?.name ?? "bu kişiyi")'i geri almak istediğinizden emin misiniz?" : "Are you sure you want to unhide \(personToUnhide?.name ?? "this person")?"
+        }
+    }
     
     private var hiddenPeople: [Personn] {
         let hidden = people.filter { $0.isHidden }
@@ -36,9 +54,19 @@ struct HiddenView: View {
             if authSuccess {
                 List {
                     ForEach(Array(hiddenPeople.enumerated()), id: \.element) { index, person in
-                        ListCell(person: person, language: LocaleManager.shared.language)
-                            .listRowBackground(index % 2 == 0 ? Color.clear : Color.gray.opacity(0.1))
-                            .listRowSeparator(.hidden)
+                        HStack {
+                            ListCell(person: person, language: language)
+                            if editMode == .active {
+                                Spacer()
+                                VStack(spacing: 10) {
+                                    PinButton(person: person)
+                                    HideButton(person: person, showAlert: $showAlert, alertType: $alertType, personToHide: $personToUnhide)
+                                    DeleteButton(person: person, showAlert: $showAlert, alertType: $alertType, personToDelete: $personToDelete)
+                                }
+                            }
+                        }
+                        .listRowBackground(index % 2 == 0 ? Color.clear : Color.gray.opacity(0.1))
+                        .listRowSeparator(.hidden)
                     }
                 }
                 .listStyle(.plain)
@@ -48,6 +76,29 @@ struct HiddenView: View {
                             .offset(y: -60)
                     }
                 }
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text(alertType == .delete ? "alertTitle".localized(language) : "unhideAlertTitle".localized(language)),
+                        message: Text(alertMessage),
+                        primaryButton: .destructive(Text(alertType == .delete ? "Delete".localized(language) : "Unhide".localized(language))) {
+                            switch alertType {
+                            case .delete:
+                                if let personToDelete = personToDelete {
+                                    context.delete(personToDelete)
+                                    notificationManager.removeNotifications(for: personToDelete)
+                                    WidgetCenter.shared.reloadAllTimelines()
+                                }
+                            case .hide:
+                                if let personToUnhide = personToUnhide {
+                                    personToUnhide.isHidden.toggle()
+                                    try? context.save()
+                                }
+                            }
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
+                
             } else {
                 VStack {
                     ContentUnavailableView {
@@ -55,13 +106,15 @@ struct HiddenView: View {
                     } description: {
                         Text("")
                     } actions: {
-                        Button("Try Again".localized(language)) {
-                            authenticateUser { success in
-                                if success {
-                                    authSuccess = true
-                                } else {
-                                    authSuccess = false
-                                    showTryAgainButton = true
+                        if showTryAgainButton {
+                            Button("Try Again".localized(language)) {
+                                authenticateUser { success in
+                                    if success {
+                                        authSuccess = true
+                                    } else {
+                                        authSuccess = false
+                                        showTryAgainButton = true
+                                    }
                                 }
                             }
                         }
@@ -103,6 +156,6 @@ struct HiddenView: View {
     }
 }
 
-#Preview {
-    HiddenView(people: [], language: .english)
-}
+//#Preview {
+//    HiddenView(editMode: Binding<EditMode>, people: [], language: .english)
+//}

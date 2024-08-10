@@ -13,17 +13,14 @@ struct ListScreen: View {
     @State private var navigateToAddNewPersonScreen = false
     @State private var navigateToSettings = false
     @State private var showCelebration = false
-    @State private var showingHiddenPersons = false
-    @State private var authSuccess = false
     @State private var category: Category = .All
-    @State private var isAuthenticating = false
     
     @Query private var people: [Personn]
     
-    private var filteredPeople: [Personn] {
-        let filtered = category == .All ? people : people.filter { $0.category == category.rawValue }
+    private var hiddenPeople: [Personn] {
+        let hidden = people.filter { $0.isHidden }
         
-        return filtered.sorted { person1, person2 in
+        return hidden.sorted { person1, person2 in
             if person1.isPinned && !person2.isPinned {
                 return true
             } else if !person1.isPinned && person2.isPinned {
@@ -50,7 +47,7 @@ struct ListScreen: View {
                             if category != .Hidden {
                                 FilteredListView(editMode: $editMode, category: category, people: people, language: language)
                             } else {
-                                HiddenView(people: people, language: language)
+                                HiddenView(editMode: $editMode, people: people, language: language)
                             }
                         }
                     }
@@ -94,30 +91,17 @@ struct ListScreen: View {
                     SettingsScreen(people: people)
                         .presentationDetents([.height(.dHeight / 2)])
                 }
-                
                 if showCelebration {
                     CelebrationView()
                         .transition(.opacity)
                         .zIndex(1)
                         .offset(y: -60)
                 }
-                
-                if isAuthenticating {
-                    //                    BiometricAuthView(isPresented: $isAuthenticating, isSuccess: $authSuccess)
-                    //                        .zIndex(2)
-                    //                        .transition(.opacity)
-                }
             }
         }
         .onAppear {
             checkForTodayBirthdays()
             UNUserNotificationCenter.current().setBadgeCount(0)
-        }
-        .onChange(of: authSuccess) {
-            if authSuccess {
-                showingHiddenPersons = true
-                isAuthenticating = false
-            }
         }
     }
     

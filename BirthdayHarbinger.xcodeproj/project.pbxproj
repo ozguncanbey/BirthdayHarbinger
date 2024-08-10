@@ -43,6 +43,7 @@
 		77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */; };
 		77D2247F2C568982005D55C4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77CCCF7C2C4557FB009EA9DC /* Localizable.strings */; };
 		77D224802C568D17005D55C4 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CBCB922C4EB5CF00BFE42B /* Date+Ext.swift */; };
+		77D3DBC52C678F0200AE5A76 /* EditButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D3DBC42C678F0200AE5A76 /* EditButtons.swift */; };
 		77D4A9862C552C8C00400CB3 /* Locale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCCF802C45642E009EA9DC /* Locale+Ext.swift */; };
 		77E025662C50E46A00EB1600 /* CelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E025652C50E46A00EB1600 /* CelebrationView.swift */; };
 		77EBA3D82C47F22D008C0E5C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBA3D72C47F22C008C0E5C /* NotificationManager.swift */; };
@@ -108,6 +109,7 @@
 		77CCCF802C45642E009EA9DC /* Locale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+Ext.swift"; sourceTree = "<group>"; };
 		77CCCF842C45723B009EA9DC /* CGFloat+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Ext.swift"; sourceTree = "<group>"; };
 		77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPickerView.swift; sourceTree = "<group>"; };
+		77D3DBC42C678F0200AE5A76 /* EditButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtons.swift; sourceTree = "<group>"; };
 		77E025652C50E46A00EB1600 /* CelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelebrationView.swift; sourceTree = "<group>"; };
 		77EBA3D72C47F22C008C0E5C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -257,6 +259,7 @@
 				77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */,
 				77E025652C50E46A00EB1600 /* CelebrationView.swift */,
 				77A8FA8E2C5A591400BBF79F /* SubscriptionHeaderView.swift */,
+				77D3DBC42C678F0200AE5A76 /* EditButtons.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */,
 				778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */,
 				7774D5A22C4982700041820D /* LocaleManager.swift in Sources */,
+				77D3DBC52C678F0200AE5A76 /* EditButtons.swift in Sources */,
 				778363102C60F719005393D5 /* HiddenView.swift in Sources */,
 				77EBA3D82C47F22D008C0E5C /* NotificationManager.swift in Sources */,
 				771BCD822C5E68F300347648 /* AlertType.swift in Sources */,

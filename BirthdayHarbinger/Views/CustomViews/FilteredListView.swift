@@ -29,10 +29,12 @@ struct FilteredListView: View {
     private var filteredPeople: [Personn] {
         let filtered = category == .All ? people : people.filter { $0.category == category.rawValue }
         
-        return filtered.sorted { person1, person2 in
+        let visiblePeople = filtered.filter { !$0.isHidden }
+        
+        return visiblePeople.sorted { person1, person2 in
             if person1.isPinned && !person2.isPinned {
                 return true
-            } else if !person1.isPinned && person2.isPinned {
+            } else if !person1.isPinned, person2.isPinned {
                 return false
             } else {
                 guard let leftDays1 = person1.calculateLeftDays(), let leftDays2 = person2.calculateLeftDays(),
@@ -91,61 +93,5 @@ struct FilteredListView: View {
                 secondaryButton: .cancel()
             )
         }
-    }
-}
-
-struct PinButton: View {
-    @Environment(\.modelContext) private var context
-    var person: Personn
-    
-    var body: some View {
-        Button(action: {
-            person.isPinned.toggle()
-            try? context.save()
-        }) {
-            Image(systemName: person.isPinned ? "pin.fill" : "pin")
-                .foregroundColor(.blue)
-        }
-        .buttonStyle(BorderlessButtonStyle())
-    }
-}
-
-struct HideButton: View {
-    @Environment(\.modelContext) private var context
-    var person: Personn
-    @Binding var showAlert: Bool
-    @Binding var alertType: AlertType
-    @Binding var personToHide: Personn?
-    
-    var body: some View {
-        Button(action: {
-            personToHide = person
-            alertType = .hide
-            showAlert = true
-        }) {
-            Image(systemName: "eye.slash")
-                .foregroundColor(.blue)
-        }
-        .buttonStyle(BorderlessButtonStyle())
-    }
-}
-
-struct DeleteButton: View {
-    @Environment(\.modelContext) private var context
-    var person: Personn
-    @Binding var showAlert: Bool
-    @Binding var alertType: AlertType
-    @Binding var personToDelete: Personn?
-    
-    var body: some View {
-        Button(action: {
-            personToDelete = person
-            alertType = .delete
-            showAlert = true
-        }) {
-            Image(systemName: "trash")
-                .foregroundColor(.red)
-        }
-        .buttonStyle(BorderlessButtonStyle())
     }
 }
