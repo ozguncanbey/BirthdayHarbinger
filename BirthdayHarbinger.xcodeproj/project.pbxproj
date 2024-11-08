@@ -33,8 +33,6 @@
 		778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4002C3E9CA600FE70DD /* ListCell.swift */; };
 		778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */; };
 		778EE4052C3E9CB500FE70DD /* ListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EE4032C3E9CB500FE70DD /* ListScreen.swift */; };
-		77A8FA8C2C5A577D00BBF79F /* SubscriptionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FA8B2C5A577D00BBF79F /* SubscriptionScreen.swift */; };
-		77A8FA8F2C5A591400BBF79F /* SubscriptionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A8FA8E2C5A591400BBF79F /* SubscriptionHeaderView.swift */; };
 		77CBCB912C4E843600BFE42B /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CBCB902C4E843600BFE42B /* String+Ext.swift */; };
 		77CBCB932C4EB5CF00BFE42B /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CBCB922C4EB5CF00BFE42B /* Date+Ext.swift */; };
 		77CCCF7E2C4557FB009EA9DC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77CCCF7C2C4557FB009EA9DC /* Localizable.strings */; };
@@ -100,8 +98,6 @@
 		778EE4002C3E9CA600FE70DD /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewPersonScreen.swift; sourceTree = "<group>"; };
 		778EE4032C3E9CB500FE70DD /* ListScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListScreen.swift; sourceTree = "<group>"; };
-		77A8FA8B2C5A577D00BBF79F /* SubscriptionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionScreen.swift; sourceTree = "<group>"; };
-		77A8FA8E2C5A591400BBF79F /* SubscriptionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionHeaderView.swift; sourceTree = "<group>"; };
 		77CBCB902C4E843600BFE42B /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		77CBCB922C4EB5CF00BFE42B /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		77CCCF7D2C4557FB009EA9DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -244,7 +240,6 @@
 				778EE4032C3E9CB500FE70DD /* ListScreen.swift */,
 				778EE4022C3E9CB500FE70DD /* AddNewPersonScreen.swift */,
 				7774D59D2C4970E00041820D /* SettingsScreen.swift */,
-				77A8FA8B2C5A577D00BBF79F /* SubscriptionScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -258,7 +253,6 @@
 				775C9DF72C42A8900053BC63 /* CustomCategoryPicker.swift */,
 				77CCCF862C45735B009EA9DC /* PhotosPickerView.swift */,
 				77E025652C50E46A00EB1600 /* CelebrationView.swift */,
-				77A8FA8E2C5A591400BBF79F /* SubscriptionHeaderView.swift */,
 				77D3DBC42C678F0200AE5A76 /* EditButtons.swift */,
 			);
 			path = CustomViews;
@@ -400,7 +394,6 @@
 				773089322C4407B000933E51 /* FilteredListView.swift in Sources */,
 				778EE3E42C3E9B7D00FE70DD /* BirthdayHarbingerApp.swift in Sources */,
 				77CBCB912C4E843600BFE42B /* String+Ext.swift in Sources */,
-				77A8FA8F2C5A591400BBF79F /* SubscriptionHeaderView.swift in Sources */,
 				778EE4042C3E9CB500FE70DD /* AddNewPersonScreen.swift in Sources */,
 				775C9DF82C42A8900053BC63 /* CustomCategoryPicker.swift in Sources */,
 				778EE4012C3E9CA600FE70DD /* ListCell.swift in Sources */,
@@ -413,7 +406,6 @@
 				7774D59E2C4970E00041820D /* SettingsScreen.swift in Sources */,
 				77CCCF812C45642E009EA9DC /* Locale+Ext.swift in Sources */,
 				77CCCF872C45735B009EA9DC /* PhotosPickerView.swift in Sources */,
-				77A8FA8C2C5A577D00BBF79F /* SubscriptionScreen.swift in Sources */,
 				7761E2632C46B3EB00D2FCD2 /* Personn.swift in Sources */,
 				77CCCF852C45723B009EA9DC /* CGFloat+Ext.swift in Sources */,
 				778EE3FF2C3E9C6600FE70DD /* Category.swift in Sources */,

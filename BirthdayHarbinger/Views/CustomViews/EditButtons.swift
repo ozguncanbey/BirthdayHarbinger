@@ -43,26 +43,6 @@ struct HideButton: View {
     }
 }
 
-//struct UnhideButton: View {
-//    @Environment(\.modelContext) private var context
-//    var person: Personn
-//    @Binding var showAlert: Bool
-//    @Binding var alertType: AlertType
-//    @Binding var personToUnhide: Personn?
-//    
-//    var body: some View {
-//        Button(action: {
-//            personToUnhide = person
-//            alertType = .unhide
-//            showAlert = true
-//        }) {
-//            Image(systemName: "eye.slash")
-//                .foregroundColor(.blue)
-//        }
-//        .buttonStyle(BorderlessButtonStyle())
-//    }
-//}
-
 struct DeleteButton: View {
     @Environment(\.modelContext) private var context
     var person: Personn

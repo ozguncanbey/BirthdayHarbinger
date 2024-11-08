@@ -25,9 +25,9 @@ struct HiddenView: View {
     private var alertMessage: String {
         switch alertType {
         case .delete:
-            return language == .turkish ? "\(personToUnhide?.name ?? "bu kişiyi")'i silmek istediğinizden emin misiniz?" : "Are you sure you want to delete \(personToUnhide?.name ?? "this person")?"
+            return language == .turkish ? "\(personToDelete?.name ?? "bu kişiyi") silmek istediğinizden emin misiniz?" : "Are you sure you want to delete \(personToDelete?.name ?? "this person")?"
         case .hide:
-            return language == .turkish ? "\(personToUnhide?.name ?? "bu kişiyi")'i geri almak istediğinizden emin misiniz?" : "Are you sure you want to unhide \(personToUnhide?.name ?? "this person")?"
+            return language == .turkish ? "\(personToUnhide?.name ?? "bu kişiyi") geri almak istediğinizden emin misiniz?" : "Are you sure you want to unhide \(personToUnhide?.name ?? "this person")?"
         }
     }
     
@@ -84,6 +84,9 @@ struct HiddenView: View {
                             switch alertType {
                             case .delete:
                                 if let personToDelete = personToDelete {
+                                    if let index = people.firstIndex(where: { $0.id == personToDelete.id }) {
+                                        people.remove(at: index)
+                                    }
                                     context.delete(personToDelete)
                                     notificationManager.removeNotifications(for: personToDelete)
                                     WidgetCenter.shared.reloadAllTimelines()
