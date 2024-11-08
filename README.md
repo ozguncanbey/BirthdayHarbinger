@@ -24,9 +24,6 @@ Birthday Harbinger is a birthday reminder app developed with SwiftUI, designed t
   - **Up to 1 week in advance** – set your preferred notification day and time.
   - **On the exact day** of the birthday, to ensure you’re always prepared.
 
-## Installation
-
-Birthday Harbinger is built for iOS devices and can be installed from the App Store.
 
 ## Usage
 
