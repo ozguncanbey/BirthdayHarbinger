@@ -38,3 +38,7 @@ Birthday Harbinger is a birthday reminder app developed with SwiftUI, designed t
 
 4. **Customize Notifications & Preferences**  
    Head to Settings to enable Dark Mode, change the app language, and set personalized birthday notifications.
+
+## Video
+
+Link: https://www.linkedin.com/feed/update/urn:li:activity:7260641211588206594/
